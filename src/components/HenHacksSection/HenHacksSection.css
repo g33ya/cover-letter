@@ -1,0 +1,574 @@
+/* =========================================
+   HENHACKS — BASE
+========================================= */
+
+.henhacks-section {
+  width: 100%;
+  overflow: clip;
+  background: #faf8f0;
+  color: #38312f;
+}
+
+.henhacks-section *,
+.henhacks-section *::before,
+.henhacks-section *::after {
+  box-sizing: border-box;
+}
+
+.henhacks-section figure {
+  margin: 0;
+}
+
+.henhacks-section img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hh-section-label,
+.hh-section-heading,
+.hh-milestone-label,
+.hh-team-photo figcaption,
+.hh-candid-photo figcaption,
+.hh-next {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+}
+
+/* =========================================
+   INTRODUCTION
+========================================= */
+
+.hh-intro {
+  position: relative;
+  display: grid;
+  grid-template-columns: 42% 58%;
+  min-height: 95vh;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(56, 49, 47, 0.15);
+}
+
+.hh-intro-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7rem 6% 5rem 12%;
+}
+
+.hh-section-label {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.hh-section-label > span:first-child {
+  color: #986073;
+}
+
+.hh-label-rule {
+  width: 70px;
+  height: 1px;
+  background: #c88ea0;
+}
+
+.hh-title {
+  margin: 0 0 2.5rem;
+  font-size: clamp(4rem, 6.7vw, 8rem);
+  line-height: 0.98;
+  font-weight: 750;
+  letter-spacing: -0.085em;
+}
+
+.hh-title span {
+  color: #c88ea0;
+}
+
+.hh-intro-lead {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.3rem, 1.8vw, 2rem);
+  line-height: 1.3;
+  letter-spacing: -0.045em;
+}
+
+.hh-intro-body {
+  max-width: 470px;
+  margin: 0 0 3rem;
+  color: #625b56;
+  font-size: clamp(1rem, 1.18vw, 1.125rem);
+  line-height: 1.75;
+}
+
+.hh-intro-photo {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 82%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  /* A broad ellipse leaves the subject opaque while feathering into the copy. */
+  -webkit-mask-image: radial-gradient(
+    ellipse 90% 110% at 100% 50%,
+    #000 66%, rgba(0, 0, 0, 0.92) 72%,
+    rgba(0, 0, 0, 0.35) 82%, rgba(0, 0, 0, 0.04) 91%, transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 90% 110% at 100% 50%,
+    #000 66%, rgba(0, 0, 0, 0.92) 72%,
+    rgba(0, 0, 0, 0.35) 82%, rgba(0, 0, 0, 0.04) 91%, transparent 100%
+  );
+}
+
+.hh-intro-photo img {
+  object-position: 53% center;
+}
+
+/* =========================================
+   TIMELINE
+========================================= */
+
+.hh-timeline {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  gap: 1rem;
+  max-width: 560px;
+  padding-top: 1.25rem;
+  border-top: 1px solid #d6b0bc;
+}
+
+.hh-milestone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.hh-milestone-dot {
+  position: absolute;
+  top: -1.57rem;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #c88ea0;
+}
+
+.hh-milestone-label {
+  color: #38312f;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.hh-milestone-detail {
+  color: #625b56;
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+/* =========================================
+   SECTION LABELS
+========================================= */
+
+.hh-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 5%;
+  color: #716a64;
+}
+
+.hh-section-heading > span:first-child {
+  color: #986073;
+}
+
+.hh-heading-rule {
+  height: 1px;
+  width: 90px;
+  min-width: 24px;
+  flex-shrink: 1;
+  background: #c88ea0;
+}
+
+/* =========================================
+   SCALE — AUDITORIUM
+========================================= */
+
+.hh-auditorium {
+  width: 100%;
+  height: clamp(350px, 46vw, 690px);
+  overflow: hidden;
+}
+
+.hh-auditorium img {
+  object-position: 50% 47%;
+}
+
+.hh-scale-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 6%;
+  padding: 5rem 5% 4rem;
+  align-items: start;
+}
+
+.hh-scale-copy h3 {
+  margin: 0 0 2.5rem;
+  font-size: clamp(2.8rem, 4.5vw, 5.5rem);
+  font-weight: 750;
+  line-height: 1.06;
+  letter-spacing: -0.075em;
+}
+
+.hh-scale-copy h3 span {
+  color: #c88ea0;
+}
+
+.hh-scale-copy p {
+  max-width: 680px;
+  margin: 0 0 1.5rem;
+  color: #625b56;
+  font-size: clamp(1rem, 1.18vw, 1.125rem);
+  line-height: 1.75;
+}
+
+.hh-team-photo {
+  overflow: hidden;
+}
+
+.hh-team-photo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.hh-team-photo figcaption {
+  margin-top: 1rem;
+  color: #5e7158;
+}
+
+/* =========================================
+   PROCESS
+========================================= */
+
+.hh-process {
+  padding-bottom: 3rem;
+  border-top: 1px solid rgba(56, 49, 47, 0.15);
+  background: #f6f3ed;
+}
+
+.hh-process-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr 0.7fr;
+  gap: 4%;
+  padding: 2.5rem 5% 7rem;
+  align-items: center;
+}
+
+.hh-process-copy h3 {
+  margin: 0 0 2.5rem;
+  font-size: clamp(2.5rem, 3.65vw, 4.5rem);
+  line-height: 1.08;
+  font-weight: 750;
+  letter-spacing: -0.075em;
+}
+
+.hh-process-copy h3 span {
+  color: #c88ea0;
+}
+
+.hh-process-copy p {
+  max-width: 570px;
+  margin: 0 0 1.3rem;
+  color: #625b56;
+  font-size: clamp(1rem, 1.18vw, 1.125rem);
+  line-height: 1.75;
+}
+
+.hh-process-copy .hh-process-emphasis {
+  margin-top: 2rem;
+  color: #38312f;
+  font-weight: 650;
+}
+
+/* =========================================
+   WORKFLOW
+========================================= */
+
+.hh-workflow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+}
+
+.hh-workflow-spine {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 1px;
+  background: #d6b0bc;
+  transform-origin: top;
+  pointer-events: none;
+}
+
+.hh-workflow-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: max-content minmax(16px, 32px) minmax(0, 1fr);
+  align-items: center;
+  column-gap: 0.75rem;
+  min-height: 95px;
+  padding: 1rem 0 1rem 1.75rem;
+}
+
+.hh-workflow-dot {
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #c88ea0;
+}
+
+.hh-workflow-name {
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  display: block;
+  transform-origin: left center;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.hh-workflow-rule {
+  transform-origin: left;
+  width: 100%;
+  height: 1px;
+  background: #b7b0a9;
+}
+
+.hh-workflow-description {
+  color: #625b56;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+/* =========================================
+   CANDID PHOTO
+========================================= */
+
+.hh-candid-photo {
+  align-self: end;
+  overflow: hidden;
+}
+
+.hh-candid-photo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.hh-candid-photo figcaption {
+  margin-top: 1rem;
+  color: #5e7158;
+  font-size: 0.75rem;
+}
+
+/* =========================================
+   NEXT
+========================================= */
+
+.hh-next {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2rem;
+  margin: 0 5%;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(56, 49, 47, 0.2);
+}
+
+.hh-next > span {
+  color: #8d7c7b;
+}
+
+.hh-next a {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  color: #38312f;
+  text-decoration: none;
+}
+
+.hh-next a:hover {
+  color: #c88ea0;
+}
+
+.hh-next a span {
+  font-size: 1.4rem;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+  .hh-intro {
+    grid-template-columns: 48% 52%;
+  }
+
+  .hh-intro-photo {
+    width: 76%;
+    -webkit-mask-image: radial-gradient(
+      ellipse 80% 110% at 100% 75%,
+      #000 76%, rgba(0, 0, 0, 0.94) 82%,
+      rgba(0, 0, 0, 0.35) 91%, rgba(0, 0, 0, 0.03) 100%, transparent 106%
+    );
+    mask-image: radial-gradient(
+      ellipse 80% 110% at 100% 75%,
+      #000 76%, rgba(0, 0, 0, 0.94) 82%,
+      rgba(0, 0, 0, 0.35) 91%, rgba(0, 0, 0, 0.03) 100%, transparent 106%
+    );
+  }
+
+  .hh-milestone-label {
+    letter-spacing: 0.025em;
+  }
+
+  .hh-intro-copy {
+    padding-left: 8%;
+  }
+
+  .hh-title {
+    font-size: clamp(3.5rem, 6vw, 6rem);
+  }
+
+  .hh-process-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hh-candid-photo {
+    grid-column: 2;
+    max-width: 330px;
+    justify-self: end;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+  .hh-intro {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .hh-intro-copy {
+    padding: 5rem 6% 3rem;
+  }
+
+  .hh-section-label {
+    margin-bottom: 2rem;
+  }
+
+  .hh-title {
+    font-size: clamp(3.5rem, 12vw, 5.5rem);
+  }
+
+  .hh-intro-body {
+    margin-bottom: 2.5rem;
+  }
+
+  .hh-intro-photo {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    -webkit-mask-image: none;
+    mask-image: none;
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .hh-intro-photo img {
+    object-position: 50% 55%;
+  }
+
+  .hh-timeline {
+    gap: 0.5rem;
+  }
+
+  .hh-milestone-label {
+    font-size: 0.75rem;
+  }
+
+  .hh-milestone-detail {
+    font-size: 0.875rem;
+  }
+
+  .hh-section-heading {
+    padding: 1.5rem 6%;
+  }
+
+  .hh-auditorium {
+    height: 280px;
+  }
+
+  .hh-scale-grid {
+    grid-template-columns: 1fr;
+    padding: 3rem 6% 3rem;
+    gap: 2.5rem;
+  }
+
+  .hh-scale-copy h3 {
+    font-size: clamp(2.4rem, 8vw, 4rem);
+  }
+
+  .hh-process-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 2.5rem 6% 5rem;
+  }
+
+  .hh-process-copy h3 {
+    font-size: clamp(2.3rem, 8vw, 4rem);
+  }
+
+  .hh-workflow-row {
+    grid-template-columns: max-content minmax(24px, 1fr);
+    padding: 1rem 0 1.25rem 1.5rem;
+    row-gap: 0.5rem;
+  }
+
+  .hh-workflow-description {
+    grid-column: 1 / -1;
+    font-size: 0.9375rem;
+  }
+
+  .hh-workflow-dot {
+    top: 1.65rem;
+  }
+
+  .hh-candid-photo {
+    grid-column: auto;
+    justify-self: center;
+    max-width: 350px;
+  }
+
+  .hh-next {
+    margin: 0 6%;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.75rem;
+  }
+}
