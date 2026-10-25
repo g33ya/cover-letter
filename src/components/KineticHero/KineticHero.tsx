@@ -335,7 +335,7 @@ export default function KineticHero() {
   }, []);
 
   return (
-    <main className="kinetic-page">
+    <div className="kinetic-page">
       <section
         ref={hero}
         style={{ touchAction: !organized || transitioning ? "pan-x pinch-zoom" : "auto" }}
@@ -476,6 +476,6 @@ export default function KineticHero() {
           </div>
         </motion.footer>
       </section>
-    </main>
+    </div>
   );
 }
