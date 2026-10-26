@@ -34,3 +34,37 @@ button {
   background: #ebc9d4;
   color: #38312f;
 }
+/* Chapter anchors retain natural document scrolling. The hero header is local,
+   so later chapter headings need only a small amount of breathing room. */
+#technical, #people, #henhacks, #leantaas, #process {
+  scroll-margin-top: 24px;
+}
+
+.chapter-closing-placeholder {
+  padding: clamp(3rem, 7vw, 6rem) 5%;
+  border-top: 1px solid rgba(56, 49, 47, 0.15);
+  background: #faf8f0;
+  color: #38312f;
+}
+
+.chapter-closing-placeholder .closing-chapter-label {
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+}
+
+.chapter-closing-placeholder h2 {
+  margin: 1.5rem 0;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  letter-spacing: -0.04em;
+}
+
+.chapter-closing-placeholder > p:last-child {
+  max-width: 55ch;
+  color: #625b56;
+  line-height: 1.75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

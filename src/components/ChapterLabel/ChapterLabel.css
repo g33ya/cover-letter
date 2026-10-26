@@ -1,0 +1,25 @@
+/* Shared typography only; each chapter owns its placement and accent color. */
+.chapter-label {
+  display: inline-block;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.5;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: left;
+  text-wrap: balance;
+}
+
+.chapter-label-prefix {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.chapter-label-title {
+  min-width: 0;
+}
