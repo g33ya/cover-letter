@@ -1,3 +1,5 @@
+import ChapterLabel from "../ChapterLabel/ChapterLabel";
+import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import "./PeopleSection.css";
 
@@ -5,6 +7,48 @@ const revealTransition = {
   duration: 0.85,
   ease: [0.22, 1, 0.36, 1] as const,
 };
+
+function BandVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    let visible = false;
+    const update = () => {
+      const shouldPlay = visible && !document.hidden && !reducedMotion;
+      if (shouldPlay) void video.play().catch(() => {});
+      else video.pause();
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting && entry.intersectionRatio >= 0.3;
+      update();
+    }, { threshold: [0, 0.3] });
+    observer.observe(video);
+    document.addEventListener("visibilitychange", update);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", update);
+      video.pause();
+    };
+  }, [reducedMotion]);
+
+  return (
+    <figure className="people-band-media">
+      <video
+        id="people-band-video"
+        ref={videoRef}
+        src="/videos/professor-student-band.mov"
+        poster="/images/professor-student-band-poster.jpg"
+        width={1170} height={652}
+        muted loop playsInline preload="metadata"
+        aria-label="Professor-student band performing together, with Gia singing. Silent video."
+      />
+      <figcaption className="people-collage-caption">I even sang in a student-professor band!</figcaption>
+    </figure>
+  );
+}
 
 export default function PeopleSection() {
   const reducedMotion = useReducedMotion();
@@ -32,6 +76,7 @@ export default function PeopleSection() {
   return (
     <section
       id="people"
+      tabIndex={-1}
       className="people-section"
       aria-labelledby="people-title"
     >
@@ -40,7 +85,7 @@ export default function PeopleSection() {
         <div className="people-intro-content">
           <motion.div {...reveal()}>
             <span className="people-eyebrow">
-              02 / PEOPLE
+              <ChapterLabel number="02" title="PEOPLE" />
             </span>
           </motion.div>
 
@@ -65,9 +110,9 @@ export default function PeopleSection() {
             </span>
 
             <p>
-              I've always loved bringing
+              I've always loved building
               <br />
-              people together.
+              community.
             </p>
           </motion.div>
         </div>
@@ -91,6 +136,8 @@ export default function PeopleSection() {
         >
           <img
             src="/images/department-casual.png"
+            width={1132}
+            height={867}
             alt="Gia and fellow University of Delaware students gathered on the steps outside a campus house."
             loading="eager"
           />
@@ -100,7 +147,7 @@ export default function PeopleSection() {
       {/* PART 2 — THE STORY */}
       <div className="people-story">
         <div className="people-section-heading">
-          <span>02 / STORY</span>
+          <ChapterLabel number="02.2" title="STORY" />
           <div className="people-heading-rule" />
           <span>PEOPLE / COMMUNITY / CONNECTION</span>
         </div>
@@ -118,19 +165,11 @@ export default function PeopleSection() {
 
             <div className="people-story-copy">
               <p>
-                Placeholder
+                Before I even set foot on the University of Delaware campus, I emailed the professor running the CIS department's community-building organization. I knew I had to get involved! I convinced them to give me a chance, freshman that I was. My driving force has always been to help others.
               </p>
 
               <p>
-                Placeholder
-              </p>
-
-              <p>
-                Placeholder
-              </p>
-
-              <p>
-                Placeholder
+                The more time I spent at UD, the more I noticed what students in our department were missing. And whenever I saw something we could improve, I wanted to do something about it! Together, we organized everything from project showcases and résumé reviews to Halloween costume contests and field days. We wanted to give students every opportunity to learn and connect.
               </p>
             </div>
 
@@ -139,23 +178,34 @@ export default function PeopleSection() {
             </div>
           </motion.div>
 
-          <motion.figure
-            className="people-outdoor-photo"
-            {...reveal(0.15)}
-          >
-            <img
-              src="/images/department-outdoor.png"
-              alt="Gia and a large group of Computer Science department students gathered outdoors."
-              loading="lazy"
-            />
-          </motion.figure>
+          <motion.div className="people-story-collage" {...reveal(0.15)}>
+            <figure className="people-outdoor-photo">
+              <img
+                src="/images/department-outdoor.png"
+                width={1170}
+                height={762}
+                alt="Gia and a large group of Computer Science department students gathered outdoors."
+                loading="lazy"
+              />
+            </figure>
+
+            <div className="people-community-media">
+              <figure className="people-event-media">
+                <img src="/images/department-event.png" width={1170} height={868}
+                  alt="A packed department classroom with students and faculty gathered together for a community event."
+                  loading="lazy" />
+                <figcaption className="people-collage-caption">Our "Meet the Professors" event turnout</figcaption>
+              </figure>
+              <BandVideo />
+            </div>
+          </motion.div>
         </div>
       </div>
 
       {/* PART 3 — TRANSITION */}
       <div className="people-transition">
         <div className="people-section-heading">
-          <span>03 / TRANSITION</span>
+          <ChapterLabel number="02.3" title="TRANSITION" />
           <div className="people-heading-rule" />
           <span>PEOPLE / LEADERSHIP / WHAT'S NEXT</span>
         </div>
@@ -166,23 +216,17 @@ export default function PeopleSection() {
             {...reveal()}
           >
             <h3>
-              I liked the
+              Ambition is
               <br />
-              behind-the-scenes
-              <br />
-              <span>part, too.</span>
+              <span>contagious.</span>
             </h3>
 
             <p>
-              Placeholder.
+              Being surrounded by passionate peers and professors pushed me to grow in ways I couldn't have on my own. 
             </p>
 
             <p>
-              Placeholder.
-            </p>
-
-            <p className="people-transition-emphasis">
-              Placeholder.
+              I learned that collaboration isn't just about what you accomplish together; <span className="people-transition-emphasis">it's about sharing some of that fire, learning from the people around you, and inspiring each other to do something bigger.</span>
             </p>
           </motion.div>
 
@@ -192,6 +236,8 @@ export default function PeopleSection() {
           >
             <img
               src="/images/department-formal.png"
+              width={1170}
+              height={1529}
               alt="Gia and fellow students at a University of Delaware Computer and Information Sciences event."
               loading="lazy"
             />

@@ -106,19 +106,20 @@
   padding: 20px 0 26px;
 }
 
-.technical-accordion-heading span {
+.technical-accordion-heading > span:not(.chapter-label) {
   font-size: 10px;
   font-weight: 750;
   letter-spacing: 0.13em;
 }
 
-.technical-accordion-heading span:last-child {
+.technical-accordion-heading > span:last-child:not(.chapter-label) {
   color: var(--tech-muted);
 }
 
 /* ACCORDION SHELL */
 
 .technical-accordion {
+  --technical-active-grow: 7;
   display: flex;
   gap: 12px;
   width: 100%;
@@ -128,7 +129,7 @@
 }
 
 .technical-accordion.has-active {
-  height: 810px;
+  height: max(810px, var(--technical-expanded-height, 810px));
 }
 
 .technical-panel {
@@ -149,7 +150,7 @@
 }
 
 .technical-panel.is-active {
-  flex-grow: 7;
+  flex-grow: var(--technical-active-grow);
   background: #f4f0e9;
 }
 
@@ -264,7 +265,7 @@
   right: 0;
   bottom: 0;
   min-width: 0;
-  overflow: auto;
+  overflow: visible;
   padding: 0 28px 25px;
   opacity: 0;
   visibility: hidden;
@@ -373,8 +374,8 @@
 
 .technical-expanded-writing > p {
   color: #625b56;
-  font-size: clamp(12px, 1.03vw, 15px);
-  line-height: 1.8;
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  line-height: 1.75;
   margin: 0 0 20px;
 }
 
@@ -503,8 +504,8 @@
     width: calc(100% - 70px);
   }
 
-  .technical-panel.is-active {
-    flex-grow: 8;
+  .technical-accordion {
+    --technical-active-grow: 8;
   }
 
   .technical-accordion {
@@ -512,7 +513,7 @@
   }
 
   .technical-accordion.has-active {
-    height: 820px;
+    height: max(820px, var(--technical-expanded-height, 820px));
   }
 
   .technical-expanded-layout {
@@ -528,7 +529,7 @@
   }
 
   .technical-expanded-writing > p {
-    font-size: 13px;
+    font-size: 1rem;
   }
 }
 
@@ -564,7 +565,7 @@
     gap: 9px;
   }
 
-  .technical-accordion-heading span {
+  .technical-accordion-heading > span:not(.chapter-label) {
     font-size: 9px;
   }
 
@@ -584,7 +585,7 @@
 
   .technical-panel.is-active {
     flex: none;
-    height: 910px;
+    height: max(910px, var(--technical-expanded-height, 910px));
   }
 
   .technical-panel-trigger {
@@ -648,7 +649,7 @@
   }
 
   .technical-expanded-writing > p {
-    font-size: 14px;
+    font-size: 1rem;
     line-height: 1.75;
   }
 

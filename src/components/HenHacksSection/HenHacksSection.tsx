@@ -1,3 +1,4 @@
+import ChapterLabel from "../ChapterLabel/ChapterLabel";
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import { animate, motion, useInView, useMotionValue, useReducedMotion, useTransform } from "motion/react";
 import type { MotionValue } from "motion/react";
@@ -6,28 +7,17 @@ import "./HenHacksSection.css";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const milestones = [
-  { label: "FOUNDING YEAR", detail: "Organizer" },
-  { label: "REGISTRATION", detail: "Head · Two years" },
-  { label: "2025", detail: "Coordinator" },
+  { label: "2023", detail: "Founding Registration Head" },
+  { label: "2024", detail: "Registration Head" },
+  { label: "2025", detail: "Head Coordinator" },
+  { label: "2026", detail: "Advisor" },
 ];
 
 const workflow = [
-  {
-    label: "Assign",
-    description: "Clear ownership for every task.",
-  },
-  {
-    label: "Track",
-    description: "Shared visibility into progress.",
-  },
-  {
-    label: "Communicate",
-    description: "Consistent expectations and updates.",
-  },
-  {
-    label: "Deliver",
-    description: "A coordinated event experience.",
-  },
+  { label: "Document", description: "Standardized task templates and descriptions." },
+  { label: "Assign", description: "Clear ownership, timelines, and priorities." },
+  { label: "Track", description: "Shared visibility into progress." },
+  { label: "Hand Off", description: "Guides and resources for future teams." },
 ];
 
 function subscribeMotionPreference(onChange: () => void) {
@@ -55,6 +45,7 @@ function WorkflowRow({ item, index, progress }: {
   return (
     <div className="hh-workflow-row" role="listitem">
       <span className="hh-workflow-dot" aria-hidden="true" />
+      <span className="hh-workflow-number">{String(index + 1).padStart(2, "0")} /</span>
       <motion.span className="hh-workflow-name" style={{ x, y, rotate }}>{item.label}</motion.span>
       <motion.span className="hh-workflow-rule" style={{ scaleX: rule }} aria-hidden="true" />
       <motion.span className="hh-workflow-description" style={{ opacity: descriptionOpacity, x: descriptionX }}>
@@ -87,7 +78,8 @@ function Workflow() {
 
   return (
     <div ref={ref} className="hh-workflow" role="list" aria-label="An organized workflow">
-      <motion.span className="hh-workflow-spine" style={{ scaleY: verticalRule }} aria-hidden="true" />
+      <motion.span className="hh-workflow-spine" style={{ scaleX: verticalRule }} aria-hidden="true" />
+      <motion.span className="hh-workflow-spine hh-workflow-spine-mobile" style={{ scaleY: verticalRule }} aria-hidden="true" />
       {workflow.map((item, index) => <WorkflowRow key={item.label} item={item} index={index} progress={progress} />)}
     </div>
   );
@@ -119,6 +111,7 @@ export default function HenHacksSection() {
   return (
     <section
       id="henhacks"
+      tabIndex={-1}
       className="henhacks-section"
       aria-labelledby="henhacks-title"
     >
@@ -132,9 +125,8 @@ export default function HenHacksSection() {
           {...reveal()}
         >
           <div className="hh-section-label">
-            <span>03</span>
-            <span className="hh-label-rule" />
-            <span>HENHACKS</span>
+            <ChapterLabel number="03" title="PROCESS" />
+            <span className="hh-label-rule" aria-hidden="true" />
           </div>
 
           <h2 id="henhacks-title" className="hh-title">
@@ -197,6 +189,8 @@ export default function HenHacksSection() {
         >
           <img
             src="/images/henhacks-presenting.jpg"
+            width={4032}
+            height={3024}
             alt="Gia speaking into a microphone during a HenHacks event."
             loading="lazy"
           />
@@ -209,17 +203,17 @@ export default function HenHacksSection() {
 
       <div className="hh-scale">
         <div className="hh-section-heading">
-          <span>03.2</span>
-          <span className="hh-heading-rule" />
-          <span>THE BIGGER PICTURE</span>
+          <ChapterLabel number="03.2" title="THE BIGGER PICTURE" />
+          <span className="hh-heading-rule" aria-hidden="true" />
         </div>
 
         <motion.figure
           className="hh-auditorium"
-          {...reveal()}
         >
           <img
             src="/images/henhacks-auditorium.jpg"
+            width={4608}
+            height={3456}
             alt="A packed university auditorium filled with HenHacks participants."
             loading="lazy"
           />
@@ -237,15 +231,19 @@ export default function HenHacksSection() {
             </h3>
 
             <p>
-              Placeholder.
+              I oversaw our Art, Website, Marketing, and Registration teams, reviewing progress and working with each team to determine their next steps.
             </p>
 
             <p>
-              Placeholder.
+              I led weekly organizer meetings and established a detailed task timeline to keep everyone on track as the event approached.
             </p>
 
             <p>
-              Placeholder.
+              I also served as the main point of contact for sponsors, from initial outreach to discussing sponsorship packages and coordinating their presence on event day.
+            </p>
+
+            <p>
+              And of course, I was there for the full 24-hour event, running on about four hours of sleep by the end of it!
             </p>
           </motion.div>
 
@@ -255,11 +253,13 @@ export default function HenHacksSection() {
           >
             <img
               src="/images/henhacks-team.png"
+            width={1170}
+            height={797}
               alt="Gia and fellow HenHacks organizers wearing matching pink event shirts."
               loading="lazy"
             />
             <figcaption>
-              THE PEOPLE WHO MADE IT HAPPEN
+              THE PEOPLE WHO MADE IT POSSIBLE.
             </figcaption>
           </motion.figure>
         </div>
@@ -271,9 +271,8 @@ export default function HenHacksSection() {
 
       <div id="process" className="hh-process">
         <div className="hh-section-heading">
-          <span>03.3</span>
-          <span className="hh-heading-rule" />
-          <span>TURNING CHAOS INTO CLARITY</span>
+          <ChapterLabel number="03.3" title="TURNING CHAOS INTO CLARITY" />
+          <span className="hh-heading-rule" aria-hidden="true" />
         </div>
 
         <div className="hh-process-grid">
@@ -282,31 +281,27 @@ export default function HenHacksSection() {
             {...reveal()}
           >
             <h3>
-              From scattered
+              From scattered tasks
               <br />
-              tasks to shared
-              <br />
-              <span>clarity.</span>
+              to shared <span>clarity.</span>
             </h3>
 
             <p>
-              Placeholder.
+              Perhaps my biggest contribution, however, wasn't just managing the existing process. It was improving our systems and how everyone worked together.
             </p>
 
             <p>
-              Placeholder.
+              Each committee had its own weekly responsibilities, assignees, and priorities. Everything was tracked in separate Google Docs maintained by committee heads, each organized a little differently. You can imagine how difficult it became to track who was doing what, how things were progressing, and where the results of each task ended up!
             </p>
 
             <p>
-              Placeholder.
+              I introduced Freedcamp, a shared task-management system, and standardized how we documented, assigned, and tracked work. I also established a clear event timeline and had each committee create an organizer guide to pass down their knowledge to future teams. When I stepped into the role, I had to figure a lot of things out on my own, and I wanted to make sure future organizers had a better starting point.
             </p>
 
             <p className="hh-process-emphasis">
-              Placeholder.
+              A lot of my effort went into making our work easier to understand, coordinate, and eventually hand off.
             </p>
           </motion.div>
-
-          <Workflow />
 
           <motion.figure
             className="hh-candid-photo"
@@ -314,6 +309,8 @@ export default function HenHacksSection() {
           >
             <img
               src="/images/henhacks-candid.jpeg"
+              width={3024}
+              height={4032}
               alt="Gia and a fellow HenHacks organizer wearing playful crowns during the event."
               loading="lazy"
             />
@@ -321,12 +318,13 @@ export default function HenHacksSection() {
               A LITTLE FUN ALONG THE WAY.
             </figcaption>
           </motion.figure>
+          <Workflow />
         </div>
 
         <div className="hh-next">
           <span>UP NEXT</span>
-          <a href="#curiosity">
-            CURIOSITY & ENGINEERING
+          <a href="#leantaas">
+            LEANTAAS / REVENUE OPERATIONS
             <span aria-hidden="true">↗</span>
           </a>
         </div>

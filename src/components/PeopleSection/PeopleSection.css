@@ -162,18 +162,58 @@
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.14em;
+  line-height: 1.5;
 }
 
-.people-outdoor-photo {
-  width: 100%;
-  min-height: 500px;
-  height: 70vh;
-  max-height: 850px;
+.people-story-collage {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 1.2fr 1fr;
+  gap: 0.65rem;
+  align-self: stretch;
+  margin-bottom: calc(1rem + 1.125rem + 1px);
+}
+
+.people-story-collage figure {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
   overflow: hidden;
 }
 
-.people-outdoor-photo img {
-  object-position: center center;
+.people-story-collage img,
+.people-story-collage video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.people-outdoor-photo img { object-position: 50% 38%; }
+.people-event-media img { object-position: 50% 78%; }
+.people-band-media video { object-position: 48% 50%; }
+
+.people-community-media {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.65rem;
+  min-height: 0;
+}
+
+.people-community-media figure { overflow: visible; }
+
+.people-collage-caption {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.65rem;
+  color: #625b56;
+  font-size: 0.8125rem;
+  line-height: 1.65;
 }
 
 /* =========================================
@@ -220,14 +260,16 @@
 
 .people-formal-photo {
   width: 100%;
-  max-height: 540px;
   overflow: hidden;
 }
 
 .people-formal-photo img {
   width: 100%;
   height: auto;
-  object-fit: contain;
+  max-height: 600px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 /* =========================================
@@ -285,6 +327,11 @@
 
   .people-story-grid {
     gap: 3rem;
+  }
+
+  .people-story-collage {
+    align-self: start;
+    height: clamp(320px, 48vw, 500px);
   }
 
   .people-transition-grid {
@@ -354,14 +401,22 @@
     margin-top: 2rem;
   }
 
-  .people-outdoor-photo {
-    min-height: 0;
+  .people-story-collage {
     height: auto;
-    aspect-ratio: 3 / 2;
+    grid-template-rows: auto auto;
+    gap: 0.75rem;
   }
 
-  .people-outdoor-photo img {
-    object-position: 50% 50%;
+  .people-outdoor-photo { aspect-ratio: 2 / 1; }
+
+  .people-community-media {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .people-community-media figure {
+    aspect-ratio: 16 / 10;
+    margin-bottom: 2.75rem;
   }
 
   .people-transition {
@@ -378,8 +433,10 @@
     font-size: clamp(2.7rem, 10vw, 4.5rem);
   }
 
-  .people-formal-photo {
+  .people-formal-photo img {
     max-height: none;
+    aspect-ratio: 1;
+    object-position: 50% 100%;
   }
 
   .people-next {

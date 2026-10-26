@@ -133,8 +133,8 @@
 ========================================= */
 
 .hh-timeline {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   position: relative;
   gap: 1rem;
   max-width: 560px;
@@ -240,6 +240,9 @@
 }
 
 .hh-team-photo {
+  width: 100%;
+  min-width: 0;
+  align-self: center;
   overflow: hidden;
 }
 
@@ -264,17 +267,23 @@
   background: #f6f3ed;
 }
 
+ .hh-process > .hh-section-heading {
+  padding-top: 1.5rem;
+  padding-bottom: 1.25rem;
+}
+
 .hh-process-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr 0.7fr;
-  gap: 4%;
-  padding: 2.5rem 5% 7rem;
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 29%);
+  column-gap: 4%;
+  row-gap: 1.75rem;
+  padding: 0.75rem 5% 2rem;
+  align-items: start;
 }
 
 .hh-process-copy h3 {
-  margin: 0 0 2.5rem;
-  font-size: clamp(2.5rem, 3.65vw, 4.5rem);
+  margin: 0 0 1.25rem;
+  font-size: clamp(2.25rem, 3.3vw, 4.5rem);
   line-height: 1.08;
   font-weight: 750;
   letter-spacing: -0.075em;
@@ -285,80 +294,83 @@
 }
 
 .hh-process-copy p {
-  max-width: 570px;
-  margin: 0 0 1.3rem;
+  max-width: 80ch;
+  margin: 0 0 0.9rem;
   color: #625b56;
   font-size: clamp(1rem, 1.18vw, 1.125rem);
   line-height: 1.75;
 }
 
 .hh-process-copy .hh-process-emphasis {
-  margin-top: 2rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0;
   color: #38312f;
   font-weight: 650;
 }
 
-/* =========================================
-   WORKFLOW
-========================================= */
-
+/* One shared progress animation organizes the four steps. */
 .hh-workflow {
+  grid-column: 1 / -1;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 .hh-workflow-spine {
   position: absolute;
-  inset: 0 auto 0 0;
-  width: 1px;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
   background: #d6b0bc;
-  transform-origin: top;
+  transform-origin: left;
   pointer-events: none;
 }
 
+.hh-workflow-spine-mobile { display: none; }
+
 .hh-workflow-row {
   position: relative;
-  display: grid;
-  grid-template-columns: max-content minmax(16px, 32px) minmax(0, 1fr);
-  align-items: center;
-  column-gap: 0.75rem;
-  min-height: 95px;
-  padding: 1rem 0 1rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 1.1rem 0 0;
+  min-width: 0;
 }
 
 .hh-workflow-dot {
   position: absolute;
-  left: -5px;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 0;
+  top: -4px;
   width: 9px;
   height: 9px;
   border-radius: 50%;
   background: #c88ea0;
 }
 
-.hh-workflow-name {
-  font-size: clamp(1rem, 1.25vw, 1.2rem);
-  display: block;
-  transform-origin: left center;
-  font-weight: 700;
-  letter-spacing: -0.04em;
+.hh-workflow-number {
+  color: #986073;
+  font-size: 0.8125rem;
+  font-weight: 650;
 }
 
-.hh-workflow-rule {
-  transform-origin: left;
-  width: 100%;
-  height: 1px;
-  background: #b7b0a9;
+.hh-workflow-name {
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  transform-origin: left center;
 }
+
+.hh-workflow-rule { display: none; }
 
 .hh-workflow-description {
   color: #625b56;
   font-size: 0.9375rem;
-  line-height: 1.7;
+  line-height: 1.65;
 }
 
 /* =========================================
@@ -366,14 +378,18 @@
 ========================================= */
 
 .hh-candid-photo {
-  align-self: end;
+  width: 100%;
+  align-self: start;
+  margin-top: 0;
   overflow: hidden;
 }
 
 .hh-candid-photo img {
   width: 100%;
   height: auto;
-  object-fit: contain;
+  aspect-ratio: 1.05;
+  object-fit: cover;
+  object-position: 50% 100%;
 }
 
 .hh-candid-photo figcaption {
@@ -452,14 +468,12 @@
   }
 
   .hh-process-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 2rem;
   }
 
-  .hh-candid-photo {
-    grid-column: 2;
-    max-width: 330px;
-    justify-self: end;
-  }
+  .hh-process-copy h3 { font-size: clamp(1.7rem, 3.25vw, 2.5rem); }
+
 }
 
 /* =========================================
@@ -505,7 +519,17 @@
   }
 
   .hh-timeline {
-    gap: 0.5rem;
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 1.25rem;
+    padding: 0 0 0 1.25rem;
+    border-top: 0;
+    border-left: 1px solid #d6b0bc;
+  }
+
+  .hh-milestone-dot {
+    top: 0.3rem;
+    left: calc(-1.25rem - 5px);
   }
 
   .hh-milestone-label {
@@ -517,6 +541,7 @@
   }
 
   .hh-section-heading {
+    gap: 0.75rem;
     padding: 1.5rem 6%;
   }
 
@@ -544,25 +569,34 @@
     font-size: clamp(2.3rem, 8vw, 4rem);
   }
 
+  .hh-workflow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .hh-workflow-spine { display: none; }
+
+  .hh-workflow-spine-mobile {
+    display: block;
+    top: 0;
+    bottom: 0;
+    right: auto;
+    width: 1px;
+    height: auto;
+    transform-origin: top;
+  }
+
   .hh-workflow-row {
-    grid-template-columns: max-content minmax(24px, 1fr);
-    padding: 1rem 0 1.25rem 1.5rem;
-    row-gap: 0.5rem;
+    padding: 0 0 1.75rem 1.5rem;
   }
 
-  .hh-workflow-description {
-    grid-column: 1 / -1;
-    font-size: 0.9375rem;
-  }
-
-  .hh-workflow-dot {
-    top: 1.65rem;
-  }
+  .hh-workflow-row:last-child { padding-bottom: 0; }
+  .hh-workflow-dot { left: -4px; top: 4px; }
 
   .hh-candid-photo {
     grid-column: auto;
-    justify-self: center;
-    max-width: 350px;
+    max-width: 420px;
+    justify-self: start;
   }
 
   .hh-next {
@@ -572,3 +606,24 @@
     font-size: 0.75rem;
   }
 }
+.hh-closing-note {
+  max-width: 640px;
+  margin: 0 5% 2rem;
+  color: #625b56;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.hh-next {
+  flex-wrap: wrap;
+}
+
+.hh-next a {
+  max-width: 100%;
+}
+
+@media (max-width: 700px) {
+  .hh-closing-note { margin-inline: 6%; }
+}
+
+

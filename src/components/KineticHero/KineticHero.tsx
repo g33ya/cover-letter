@@ -33,6 +33,14 @@ const scatteredWords: ScatteredWord[] = [
   { text: "process", className: "word-process", delay: 0.18, rotation: -8, color: "#d596a7" },
 ];
 
+// Destination order is independent of the approved scattered composition.
+const chapterLinks = [
+  { word: "systems", href: "#technical", label: "SYSTEMS", chapter: "Technical experience" },
+  { word: "people", href: "#people", label: "PEOPLE", chapter: "CS department community" },
+  { word: "process", href: "#henhacks", label: "PROCESS", chapter: "HenHacks" },
+  { word: "ideas", href: "#leantaas", label: "IDEAS", chapter: "LeanTaaS" },
+];
+
 const wordCurves: Record<string, { width: number; path: string; angles: string }> = {
   people: { width: 310, path: "M 10 112 C 90 58, 196 133, 300 82", angles: "-7 3 -4 6 -3 8" },
   systems: { width: 380, path: "M 10 78 C 120 137, 245 53, 370 110", angles: "5 -5 4 -3 6 -4 5" },
@@ -338,9 +346,18 @@ export default function KineticHero() {
     <div className="kinetic-page">
       <section
         ref={hero}
+        id="hero"
+        tabIndex={-1}
         style={{ touchAction: !organized || transitioning ? "pan-x pinch-zoom" : "auto" }}
         className="kinetic-hero"
+        data-interactive={!organized && !transitioning}
         aria-label="An introduction to Gia"
+        onClick={event => {
+          if (organized || transitioning) return;
+          if (event.target instanceof Element && event.target.closest("a, button, input, textarea, select, [contenteditable]")) return;
+          if (window.getSelection()?.isCollapsed === false) return;
+          reorganize(true);
+        }}
         onPointerMove={(event) => {
           if (!organized && !transitioning && !reducedMotion && hoverCapable.current && event.pointerType === "mouse") {
             cursor.set({ x: event.clientX, y: event.clientY });
@@ -354,7 +371,7 @@ export default function KineticHero() {
         {/* Navigation */}
         <header className="hero-nav">
           <div className="nav-brand">
-            <span className="brand-name">Gia S.</span>
+            <span className="brand-name">Gia Scozzaro</span>
             <span className="brand-divider">/</span>
             <span className="brand-description">
               an interactive letter
@@ -362,17 +379,14 @@ export default function KineticHero() {
           </div>
 
           <div className="nav-right">
-            <span className="nav-label">AN INTRODUCTION</span>
+            <span className="nav-label">INTRODUCTION</span>
             <span className="nav-line" />
-            <span className="nav-number">
-              {organized ? "02" : "01"}
-            </span>
           </div>
         </header>
 
         {/* Typography canvas */}
         <div className="hero-canvas">
-          <div className="chaos-container">
+          <div className="chaos-container" aria-hidden={organized && !transitioning}>
                 {/* Bars and cropped letter contours follow the before-state reference. */}
                 <motion.svg
                   style={{ opacity: fragmentsOpacity, scale: fragmentsScale }}
@@ -407,9 +421,24 @@ export default function KineticHero() {
                   <ScatteredWordView key={word.text} word={word} cursor={cursor} progress={progress} active={!organized && !transitioning} />
                 ))}
           </div>
-          <motion.aside className="editorial-column" aria-hidden="true" style={{ opacity: columnOpacity }}>
-            {scatteredWords.map(word => <span key={word.text} data-word-slot={word.text} />)}
-          </motion.aside>
+          <motion.nav
+            className="editorial-column"
+            aria-label="Explore the chapters"
+            aria-hidden={!organized || transitioning}
+            inert={!organized || transitioning}
+            style={{ opacity: columnOpacity, pointerEvents: organized && !transitioning ? "auto" : "none" }}
+          >
+            {chapterLinks.map(link => (
+              <a
+                key={link.word}
+                data-word-slot={link.word}
+                href={link.href}
+                aria-label={`${link.label}: ${link.chapter}`}
+                tabIndex={organized && !transitioning ? 0 : -1}
+                onClick={event => event.stopPropagation()}
+              />
+            ))}
+          </motion.nav>
           <div className="organized-container" aria-hidden={!organized}>
             <motion.div className="final-headline" style={{ opacity: headlineOpacity }}>
               <motion.span className="headline-line headline-first" style={{ clipPath: revealFirst }}>There's a</motion.span>
@@ -456,9 +485,10 @@ export default function KineticHero() {
                 }}
               >
                 <p className="hero-tagline">
-                  Finding it is what I love doing.
+                  Finding it is what I love to do.
                 </p>
 
+                <div className="hero-organized-actions">
                 <button
                   className="hero-reset"
                   onClick={() => reorganize(false)}
@@ -466,12 +496,30 @@ export default function KineticHero() {
                 >
                   ↺ Replay
                 </button>
+                  <a
+                    href="#technical"
+                    className="hero-next-link hero-next-mobile"
+                    aria-disabled={transitioning || undefined}
+                    tabIndex={transitioning ? -1 : 0}
+                    onClick={event => { if (transitioning) event.preventDefault(); }}
+                  >
+                    NEXT: THE WORK <span aria-hidden="true">&#8599;</span>
+                  </a>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
 
-          <div className="footer-meta">
-            <span>{organized ? "SCROLL TO MEET GIA" : "THE BEGINNING"}</span>
+          <div className="footer-meta">       
+              <a
+                href="#technical"
+                className="hero-next-link"
+                aria-disabled={transitioning || undefined}
+                tabIndex={transitioning ? -1 : 0}
+                onClick={event => { if (transitioning) event.preventDefault(); }}
+              >
+                SCROLL TO EXPLORE
+              </a>        
             <span className="footer-meta-line" />
           </div>
         </motion.footer>
