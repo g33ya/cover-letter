@@ -57,7 +57,6 @@ function FluidWord({ text, progress }: { text: string; progress: MotionValue<num
   const angles = useTransform(progress, p => curve.angles.split(" ").map(a => Number(a) * (1 - smooth(p / 0.78))).join(" "));
   const tracking = useTransform(progress, p => -9.5 + smooth(p / 0.78) * 21.5);
   const textTransform = useTransform(progress, p => p >= 0.82 ? "uppercase" as const : "none" as const);
-  const shadow = useTransform(progress, p => `drop-shadow(3px 5px 5px rgba(56, 49, 47, ${0.10 * (1 - smooth(p / 0.7))}))`);
 
   // SVG presentation attributes lose to stylesheet rules; update the actual text styles.
   useMotionValueEvent(angles, "change", value => lettering.current?.setAttribute("rotate", value));
@@ -68,7 +67,7 @@ function FluidWord({ text, progress }: { text: string; progress: MotionValue<num
     <motion.svg
       className="fluid-word"
       viewBox={`0 0 ${curve.width} 150`}
-      style={{ width: `${curve.width / 100}em`, filter: shadow }}
+      style={{ width: `${curve.width / 100}em` }}
       role="img"
       aria-label={text}
       focusable="false"
@@ -209,9 +208,7 @@ export default function KineticHero() {
   const progress = useMotionValue(0);
   const playback = useRef<ReturnType<typeof animate> | null>(null);
   const footer = useRef<HTMLElement>(null);
-  const scatteredFooterHeight = useRef(0);
   const footerHeight = useMotionValue<number | string>("auto");
-  const footerPlayback = useRef<ReturnType<typeof animate> | null>(null);
   const fragmentsOpacity = useTransform(progress, p => 1 - smooth((p - 0.08) / 0.57));
   const fragmentsScale = useTransform(progress, p => 1 - smooth(p) * 0.035);
   const headlineMask = (p: number, start: number) => {
@@ -233,14 +230,10 @@ export default function KineticHero() {
     cursor.set(null);
     if (footer.current) {
       const height = footer.current.getBoundingClientRect().height;
-      if (next) scatteredFooterHeight.current = height;
-      footerHeight.set(height);
-      footerPlayback.current?.stop();
       const compactHeight = parseFloat(getComputedStyle(footer.current).minHeight);
-      footerPlayback.current = animate(footerHeight, next ? compactHeight : scatteredFooterHeight.current, {
-        duration: reducedMotion ? 0 : 1.7,
-        ease: [0.22, 1, 0.36, 1],
-      });
+      // Reserve the footer space instead of resizing the canvas every frame.
+      // Canvas resizes remeasure all four SVG destinations during the morph.
+      footerHeight.set(Math.max(height, compactHeight));
     }
     setOrganized(next);
     setTransitioning(true);
@@ -256,12 +249,10 @@ export default function KineticHero() {
   };
   useEffect(() => () => {
     playback.current?.stop();
-    footerPlayback.current?.stop();
   }, []);
   useEffect(() => {
     if (reducedMotion) {
       playback.current?.complete();
-      footerPlayback.current?.complete();
     }
   }, [reducedMotion]);
   const cursor = useMotionValue<Cursor>(null);
@@ -291,8 +282,6 @@ export default function KineticHero() {
   useEffect(() => {
     const element = hero.current;
     if (!element) return;
-    let wheelDistance = 0;
-    let lastWheel = 0;
     let touchY: number | null = null;
     const visible = () => {
       const bounds = element.getBoundingClientRect();
@@ -308,17 +297,15 @@ export default function KineticHero() {
     };
     const wheel = (event: WheelEvent) => {
       if (event.ctrlKey || event.metaKey || event.shiftKey || excluded(event.target) || event.deltaY <= 0 || Math.abs(event.deltaX) > event.deltaY) return;
-      const now = performance.now();
-      if (now - lastWheel > 220) wheelDistance = 0;
-      lastWheel = now;
-      wheelDistance += event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1);
-      if (wheelDistance >= 45 || controller.current.running) request(event);
+      // Consume the first movement, including small trackpad deltas, so native
+      // scrolling cannot move the hero out of range before the animation starts.
+      request(event);
     };
     const start = (event: TouchEvent) => { touchY = event.touches.length === 1 ? event.touches[0].clientY : null; };
     const move = (event: TouchEvent) => {
       if (touchY === null || event.touches.length !== 1 || excluded(event.target)) return;
       const distance = touchY - event.touches[0].clientY;
-      if (distance > 40) request(event);
+      if (distance > 0) request(event);
     };
     const end = () => { touchY = null; };
     const key = (event: KeyboardEvent) => {

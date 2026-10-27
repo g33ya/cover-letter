@@ -185,7 +185,6 @@ export default function HenHacksSection() {
 
         <motion.figure
           className="hh-intro-photo"
-          {...reveal(0.12)}
         >
           <img
             src="/images/henhacks-presenting.jpg"

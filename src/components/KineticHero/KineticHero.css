@@ -147,7 +147,6 @@
   margin-top: -0.23em;
   overflow: visible;
   fill: currentColor;
-  filter: drop-shadow(3px 5px 5px rgba(56, 49, 47, 0.10));
 }
 
 .fluid-word text {
@@ -210,6 +209,7 @@
 
 .organized-container {
   top: var(--nav-height);
+  container-type: size;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -226,7 +226,7 @@
 .headline-line {
   display: block;
   font-family: "Manrope", sans-serif;
-  font-size: clamp(5rem, 13vw, 13.5rem);
+  font-size: min(clamp(5rem, 13vw, 13.5rem), 30cqh);
   font-weight: 750;
   letter-spacing: -0.09em;
   line-height: 0.99;
@@ -396,7 +396,7 @@
   }
 
   .headline-line {
-    font-size: clamp(4.5rem, 14vw, 9rem);
+    font-size: min(clamp(4.5rem, 14vw, 9rem), 30cqh);
   }
 
   .word-process {
@@ -444,7 +444,7 @@
   }
 
   .headline-line {
-    font-size: clamp(3rem, 12.5vw, 5.5rem);
+    font-size: min(clamp(3rem, 12.5vw, 5.5rem), 30cqh);
     letter-spacing: -0.085em;
     line-height: 1.08;
   }
