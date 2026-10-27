@@ -555,7 +555,44 @@
   inset: -8px -6px;
 }
 
-.editorial-column a:hover { box-shadow: inset 0 -1px rgba(113, 107, 101, 0.4); }
+.editorial-column a::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -5px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 280ms ease;
+  pointer-events: none;
+}
+
+.editorial-column a:is(:hover, :focus-visible)::after {
+  transform: scaleX(1);
+}
+
+/* The visible words remain the original SVG nodes; the links are hit areas. */
+.fluid-word {
+  scale: 1;
+  transform-origin: left center;
+  transition: scale 220ms ease;
+}
+
+.hero-canvas:has([data-word-slot="systems"]:is(:hover, :focus-visible)) .word-systems .fluid-word,
+.hero-canvas:has([data-word-slot="people"]:is(:hover, :focus-visible)) .word-people .fluid-word,
+.hero-canvas:has([data-word-slot="process"]:is(:hover, :focus-visible)) .word-process .fluid-word,
+.hero-canvas:has([data-word-slot="ideas"]:is(:hover, :focus-visible)) .word-ideas .fluid-word {
+  scale: 1.08;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorial-column a::after,
+  .fluid-word {
+    transition: none;
+  }
+}
+
 .editorial-column a:focus-visible { outline: 2px solid #778d70; outline-offset: 6px; }
 
 @media (max-width: 900px) {

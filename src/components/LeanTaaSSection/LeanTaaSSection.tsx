@@ -1,4 +1,5 @@
 import ChapterLabel from "../ChapterLabel/ChapterLabel";
+import ChapterRule from "../ChapterLabel/ChapterRule";
 import { motion, useReducedMotion } from "motion/react";
 import "./LeanTaaSSection.css";
 
@@ -6,7 +7,7 @@ import "./LeanTaaSSection.css";
 const connectionCopy = [
   "The work I enjoy most has a common thread: I love getting under the hood of unfamiliar systems, figuring out how everything fits together, and finding ways to make things work better.",
   "But I've also learned that understanding the technology is only half the picture. It's just as important to understand the people using it, the challenges they face, and how they work together.",
-  "I'm excited about how closely this role works with the people using those solutions. I love learning how other teams operate, understanding what's important to them, and finding ways to make their work easier.",
+  "I'm excited about how closely I’d work with the people using the tools we build. I love learning how other teams operate, understanding what's important to them, and finding ways to make their work easier.",
 ];
 const contributionCopy = [
   "What excites me most about GTM Engineering at LeanTaaS is how much variety there seems to be in the problems you're solving. From our conversations, I got the impression that there's no shortage of ideas or initiative. There are already tools being built, processes being improved, and opportunities to connect things that don't quite work together yet.",
@@ -59,7 +60,7 @@ export default function LeanTaaSSection() {
   };
   return (
     <section id="leantaas" className="ideas-section" aria-labelledby="leantaas-title" tabIndex={-1}>
-      <div className="ideas-chapter-heading"><ChapterLabel number="04" title="IDEAS" /><span className="ideas-divider" /><span className="ideas-chapter-meta">THE NEXT CHAPTER</span></div>
+      <div className="ideas-chapter-heading"><ChapterLabel number="04" title="IDEAS" /><ChapterRule className="ideas-divider" /><span className="ideas-chapter-meta">THE NEXT CHAPTER</span></div>
       <div className="ideas-connection">
         <motion.h2 id="leantaas-title" {...reveal}>The best systems<br /><span>work for people.</span></motion.h2>
         <div className="ideas-connection-grid">
@@ -68,21 +69,23 @@ export default function LeanTaaSSection() {
         </div>
       </div>
       <div className="ideas-contribution">
-        <div className="ideas-label"><ChapterLabel number="04.2" title="WHY LEANTAAS" /><span className="ideas-divider" /></div>
+        <div className="ideas-label"><ChapterLabel number="04.1" title="WHY LEANTAAS" /><ChapterRule className="ideas-divider" /></div>
         <div className="ideas-contribution-grid">
           <motion.h3 {...reveal}>Where I see myself<br /><span>contributing.</span></motion.h3>
           <motion.div className="ideas-copy ideas-contribution-copy" {...reveal}>{contributionCopy.map(p => <p key={p}>{p}</p>)}</motion.div>
         </div>
       </div>
       <div className="ideas-closing">
-        <div className="ideas-label"><ChapterLabel number="04.3" title="WHAT COMES NEXT" /><span className="ideas-divider" /></div>
+        <div className="ideas-label"><ChapterLabel number="04.2" title="WHAT COMES NEXT" /><ChapterRule className="ideas-divider" /></div>
         <div className="ideas-closing-grid">
           <motion.h3 {...reveal}>I'd love to help build<br /><span>what comes next.</span></motion.h3>
           <motion.div className="ideas-copy ideas-closing-copy" {...reveal}>
             <p>{closingCopy}</p>
-            {/* Replace the placeholder anchor with the final contact destination. */}
-            <a className="ideas-contact" href="#contact-placeholder">LET'S TALK <span aria-hidden="true">↗</span></a>
-            <p id="contact-placeholder" className="ideas-contact-placeholder">[Contact destination to be added.]</p>
+            <a className="ideas-contact" href="mailto:giov.scozzaro@gmail.com">LET'S TALK <span aria-hidden="true">↗</span></a>
+            <div className="ideas-contact-options">
+              <span>giov.scozzaro@gmail.com</span>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=giov.scozzaro%40gmail.com" target="_blank" rel="noopener noreferrer">Open in Gmail <span aria-hidden="true">↗</span></a>
+            </div>
           </motion.div>
         </div>
       </div>

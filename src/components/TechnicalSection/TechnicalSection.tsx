@@ -1,4 +1,5 @@
 import ChapterLabel from "../ChapterLabel/ChapterLabel";
+import ChapterRule from "../ChapterLabel/ChapterRule";
 import { useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import "./TechnicalSection.css";
@@ -37,7 +38,7 @@ const experiences: Experience[] = [
     mainRegion: [0.58, 0.47, 0.77, 0.61],
     teamRegion: [0.10, 0.07, 0.87, 0.74],
     paragraphs: [
-          "At Apple, I was drawn to the challenge of identifying an ambiguous problem: where could AI make the biggest impact on an internal testing visualization platform?",
+          "At Apple, I was drawn to the challenge of defining an ambiguous problem: where could AI make the biggest impact on an internal testing visualization platform?",
           "I interviewed team managers to understand their workflows and figure out where a new feature could fit. That led me to develop AI Insights, a test suite summarizer that highlighted improvements, concerns, and regressions compared to previous weeks in just seconds.",
           "I owned the feature's end-to-end development, from designing the data model and APIs to prompt engineering and building the React interface. I introduced a human-in-the-loop approval process and refined how the feature fit into the platform's architecture.",
           "This was my first opportunity to conduct real stakeholder interviews! I discovered how much I enjoy working with people and building technology that works for them. Getting to see the impact of my work and knowing its development continued after I left made the experience even more valuable."
@@ -62,8 +63,8 @@ const experiences: Experience[] = [
     teamRegion: [0, 0.03, 0.79, 0.60],
     paragraphs: [
           "At M&T, I was drawn to the challenge of working with systems I had never encountered before. My task was to migrate an application's CI/CD pipelines from Azure DevOps to GitLab, which meant studying unfamiliar scripts, translating them into YAML, and spending many, many pipeline runs reading through logs.",
-          "Before this internship, I had never really worked under the hood. But with each running pipeline, I grew more confident and independent. I ended up migrating two applications instead of one, which earned me the opportunity to tackle a security vulnerability with no known solution from the team.",
-          "I left knowing that researching implementation approaches and understanding the systems you're working with is often half the battle. Even when I don't know where to start, I can figure it out!"
+          "Before this internship, I had never really worked under the hood. But with each running pipeline, I grew more confident and independent. I ended up migrating two applications instead of one, which earned me the opportunity to tackle a security vulnerability the team didn’t yet know how to resolve.",
+          "I left knowing that researching implementation approaches and understanding the systems you're working with are often half the battle. Even when I don't know where to start, I can figure it out!"
     ],
     details: [
       "Azure DevOps → GitLab",
@@ -85,7 +86,7 @@ const experiences: Experience[] = [
     teamRegion: [0, 0.01, 0.76, 0.82],
     paragraphs: [
           "Working on the DAPPEr (Delaware Atmospheric Plasma Probe Experiment) team introduced me to an entirely different side of computer science. I was surrounded by unfamiliar hardware, technical documentation, and systems I had never encountered before.",
-          "A lot my work involved researching, creating flight packet structures, and mapping communication diagrams. I spent a good chunk of my time reading and understanding how everything fit together. One of our biggest accomplishments was connecting an Arduino board to the satellite's Attitude Determination and Control System (ADCS) and successfully confirming communication between them.",
+          "A lot of my work involved researching, creating flight packet structures, and mapping communication diagrams. I spent a good chunk of my time reading and understanding how everything fit together. One of our biggest accomplishments was connecting an Arduino board to the satellite's Attitude Determination and Control System (ADCS) and successfully confirming communication between them.",
           "This experience taught me that problem-solving doesn't always mean jumping straight into implementation. Sometimes, the most important step is taking the time to understand the system first."
     ],
     details: [
@@ -243,7 +244,7 @@ export default function TechnicalSection() {
         <div className="technical-intro">
           <div className="technical-section-label">
             <ChapterLabel number="01" title="SYSTEMS" />
-            <span className="technical-label-line" aria-hidden="true" />
+            <ChapterRule className="technical-label-line" />
           </div>
 
           <h2 id="technical-title" className="technical-headline">
@@ -401,7 +402,7 @@ export default function TechnicalSection() {
 
         <div className="technical-transition">
           <span className="technical-transition-label">
-            <ChapterLabel number="01.2" title="BUT THE WORK IS ONLY PART OF IT" />
+            <ChapterLabel number="01.2" title="IT'S NOT ONLY WORK" />
           </span>
 
           <p>

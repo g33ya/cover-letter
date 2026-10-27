@@ -269,7 +269,7 @@
   padding: 0 28px 25px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(12px);
+  transform: translateY(8px);
   transition: opacity 350ms ease, transform 600ms cubic-bezier(0.22, 1, 0.36, 1), visibility 350ms;
 }
 
@@ -277,7 +277,7 @@
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
-  transition-delay: 250ms;
+  transition-delay: 180ms;
 }
 
 .technical-expanded-heading {
@@ -351,14 +351,14 @@
 .technical-photo-caption span {
   display: block;
   color: var(--panel-accent);
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 750;
   letter-spacing: 0.1em;
   line-height: 1.5;
 }
 
 .technical-photo-caption p {
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--tech-muted);
   margin: 4px 0 0;
@@ -370,6 +370,15 @@
   cursor: text;
   padding-top: 3px;
   min-width: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.technical-panel.is-active .technical-expanded-writing {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms ease 420ms, transform 500ms cubic-bezier(0.22, 1, 0.36, 1) 420ms;
 }
 
 .technical-expanded-writing > p {

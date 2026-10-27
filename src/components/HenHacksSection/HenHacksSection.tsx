@@ -1,4 +1,5 @@
 import ChapterLabel from "../ChapterLabel/ChapterLabel";
+import ChapterRule from "../ChapterLabel/ChapterRule";
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import { animate, motion, useInView, useMotionValue, useReducedMotion, useTransform } from "motion/react";
 import type { MotionValue } from "motion/react";
@@ -91,7 +92,7 @@ export default function HenHacksSection() {
   const reveal = (delay = 0) => ({
     initial: {
       opacity: 0,
-      y: reducedMotion ? 0 : 35,
+      y: reducedMotion ? 0 : 20,
     },
     whileInView: {
       opacity: 1,
@@ -102,7 +103,7 @@ export default function HenHacksSection() {
       amount: 0.15,
     },
     transition: {
-      duration: reducedMotion ? 0 : 0.8,
+      duration: reducedMotion ? 0 : 0.65,
       delay: reducedMotion ? 0 : delay,
       ease,
     },
@@ -126,7 +127,7 @@ export default function HenHacksSection() {
         >
           <div className="hh-section-label">
             <ChapterLabel number="03" title="PROCESS" />
-            <span className="hh-label-rule" aria-hidden="true" />
+            <ChapterRule className="hh-label-rule" />
           </div>
 
           <h2 id="henhacks-title" className="hh-title">
@@ -202,8 +203,8 @@ export default function HenHacksSection() {
 
       <div className="hh-scale">
         <div className="hh-section-heading">
-          <ChapterLabel number="03.2" title="THE BIGGER PICTURE" />
-          <span className="hh-heading-rule" aria-hidden="true" />
+          <ChapterLabel number="03.1" title="THE BIGGER PICTURE" />
+          <ChapterRule className="hh-heading-rule" />
         </div>
 
         <motion.figure
@@ -270,8 +271,8 @@ export default function HenHacksSection() {
 
       <div id="process" className="hh-process">
         <div className="hh-section-heading">
-          <ChapterLabel number="03.3" title="TURNING CHAOS INTO CLARITY" />
-          <span className="hh-heading-rule" aria-hidden="true" />
+          <ChapterLabel number="03.2" title="TURNING CHAOS INTO CLARITY" />
+          <ChapterRule className="hh-heading-rule" />
         </div>
 
         <div className="hh-process-grid">
@@ -323,7 +324,7 @@ export default function HenHacksSection() {
         <div className="hh-next">
           <span>UP NEXT</span>
           <a href="#leantaas">
-            LEANTAAS / REVENUE OPERATIONS
+            WHY LEANTAAS / GTM ENGINEERING
             <span aria-hidden="true">↗</span>
           </a>
         </div>

@@ -1,10 +1,11 @@
 import ChapterLabel from "../ChapterLabel/ChapterLabel";
+import ChapterRule from "../ChapterLabel/ChapterRule";
 import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import "./PeopleSection.css";
 
 const revealTransition = {
-  duration: 0.85,
+  duration: 0.65,
   ease: [0.22, 1, 0.36, 1] as const,
 };
 
@@ -56,7 +57,7 @@ export default function PeopleSection() {
   const reveal = (delay = 0) => ({
     initial: {
       opacity: 0,
-      y: reducedMotion ? 0 : 36,
+      y: reducedMotion ? 0 : 20,
     },
     whileInView: {
       opacity: 1,
@@ -121,7 +122,7 @@ export default function PeopleSection() {
           className="people-main-photo"
           initial={{
             opacity: 0,
-            y: reducedMotion ? 0 : 45,
+            y: reducedMotion ? 0 : 24,
           }}
           whileInView={{
             opacity: 1,
@@ -130,7 +131,7 @@ export default function PeopleSection() {
           viewport={{ once: true, amount: 0.1 }}
           transition={{
             ...revealTransition,
-            duration: reducedMotion ? 0 : 1,
+            duration: reducedMotion ? 0 : 0.75,
             delay: reducedMotion ? 0 : 0.15,
           }}
         >
@@ -147,8 +148,8 @@ export default function PeopleSection() {
       {/* PART 2 — THE STORY */}
       <div className="people-story">
         <div className="people-section-heading">
-          <ChapterLabel number="02.2" title="STORY" />
-          <div className="people-heading-rule" />
+          <ChapterLabel number="02.1" title="STORY" />
+          <ChapterRule className="people-heading-rule" />
           <span>PEOPLE / COMMUNITY / CONNECTION</span>
         </div>
 
@@ -205,8 +206,8 @@ export default function PeopleSection() {
       {/* PART 3 — TRANSITION */}
       <div className="people-transition">
         <div className="people-section-heading">
-          <ChapterLabel number="02.3" title="TRANSITION" />
-          <div className="people-heading-rule" />
+          <ChapterLabel number="02.2" title="TRANSITION" />
+          <ChapterRule className="people-heading-rule" />
           <span>PEOPLE / LEADERSHIP / WHAT'S NEXT</span>
         </div>
 
