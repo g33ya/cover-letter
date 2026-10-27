@@ -1,0 +1,58 @@
+.ideas-section { background: #faf8f0; color: #38312f; }
+.ideas-chapter-heading, .ideas-label { display: flex; align-items: center; gap: 1.5rem; }
+.ideas-chapter-heading { padding: 2.5rem 5%; }
+.ideas-divider { flex: 1; min-width: 24px; height: 1px; background: rgba(56,49,47,.3); }
+.ideas-chapter-meta { font-size: .68rem; letter-spacing: .16em; font-weight: 650; }
+.ideas-connection, .ideas-contribution, .ideas-closing { padding: 4rem 5% 5rem; }
+.ideas-label { margin-bottom: 3rem; }
+.ideas-section h2, .ideas-section h3 { margin: 0; font-weight: 600; letter-spacing: -.075em; line-height: 1.02; }
+.ideas-section h2 { font-size: clamp(3.2rem, 7.8vw, 9rem); }
+.ideas-section h3 { font-size: clamp(2.8rem, 5.5vw, 6.5rem); }
+.ideas-section h2 span, .ideas-section h3 span { color: #c88ea0; }
+.ideas-connection-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.7fr); gap: 4%; align-items: center; margin-top: 3rem; }
+.ideas-copy { font-size: clamp(1rem, 1.2vw, 1.125rem); line-height: 1.75; color: #625b56; }
+.ideas-copy p { margin: 0 0 1.5rem; }
+.ideas-copy p:last-child { margin-bottom: 0; }
+.ideas-connection-copy { max-width: 38ch; min-height: 20rem; }
+.ideas-convergence { display: grid; grid-template-columns: minmax(0, 2.7fr) minmax(0, 1fr); align-items: center; gap: .75rem; min-width: 0; }
+.ideas-pathways { position: relative; height: 320px; }
+.ideas-pathways svg { position: absolute; width: 100%; height: 100%; overflow: visible; }
+.ideas-path-labels { position: absolute; inset: 0 12% 0 0; display: flex; flex-direction: column; justify-content: space-between; padding: 0 0 48px; }
+.ideas-path-label { display: grid; grid-template-columns: 1.5rem max-content minmax(0,1fr); gap: .7rem; align-items: baseline; font-size: .75rem; line-height: 1.5; }
+.ideas-path-number { color: #5e7158; }
+.ideas-path-label strong { font-size: .75rem; letter-spacing: .1em; }
+.ideas-path-detail { border-left: 1px solid #b7b0a9; padding-left: .7rem; color: #625b56; }
+.ideas-outcome > span { font-size: .625rem; font-weight: 650; letter-spacing: .14em; }
+.ideas-outcome p { margin: .75rem 0 0; font-size: clamp(1rem,1.5vw,1.65rem); line-height: 1.35; letter-spacing: -.04em; text-transform: uppercase; }
+.ideas-outcome em { color: #b76e86; font-style: normal; }
+.ideas-contribution { border-top: 1px solid rgba(56,49,47,.3); }
+.ideas-contribution-grid { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: 5%; }
+.ideas-contribution-copy { border-left: 1px solid #d6b0bc; padding-left: 3rem; min-height: 26rem; max-width: 66ch; }
+.ideas-closing { background: #f8eeee; border-top: 1px solid rgba(56,49,47,.3); }
+.ideas-closing-grid { display: grid; grid-template-columns: minmax(0,1.7fr) minmax(0,1fr); gap: 5%; }
+.ideas-closing-copy { border-left: 1px solid #d6b0bc; padding-left: 3rem; }
+.ideas-contact { display: inline-flex; gap: 1rem; padding: .65rem 0; margin-top: 1rem; border-bottom: 1px solid #c88ea0; color: #38312f; text-decoration: none; font-size: .875rem; letter-spacing: .16em; }
+.ideas-contact:focus-visible { outline: 2px solid #778d70; outline-offset: 5px; }
+.ideas-contact-placeholder { font-size: .75rem; margin-top: 1rem !important; }
+@media(max-width:1100px) {
+  .ideas-connection-grid { grid-template-columns: minmax(0,1fr); gap: 2rem; }
+  .ideas-connection-copy { max-width: 70ch; min-height: 0; }
+  .ideas-convergence { max-width: 900px; width: 100%; }
+  .ideas-contribution-copy, .ideas-closing-copy { padding-left: 1.5rem; }
+}
+@media(max-width:700px) {
+  .ideas-chapter-heading { padding: 2rem 6%; }
+  .ideas-chapter-meta { display: none; }
+  .ideas-connection, .ideas-contribution, .ideas-closing { padding: 3rem 6%; }
+  .ideas-label { gap: 1rem; margin-bottom: 2rem; }
+  .ideas-section h2 { font-size: clamp(2.5rem, 9vw, 4rem); }
+  .ideas-section h3 { font-size: clamp(2.5rem, 9vw, 4rem); }
+  .ideas-contribution-grid, .ideas-closing-grid { grid-template-columns: minmax(0,1fr); gap: 2rem; }
+  .ideas-contribution-copy, .ideas-closing-copy { border-left: 0; padding-left: 0; min-height: 0; }
+  .ideas-convergence { grid-template-columns: minmax(0,1fr); gap: 1.5rem; }
+  .ideas-pathways { height: 320px; }
+  .ideas-path-labels { right: 20%; transform: translateY(-16px); }
+  .ideas-path-label { grid-template-columns: 1.2rem minmax(0,1fr); gap: .3rem .6rem; }
+  .ideas-path-detail { grid-column: 2; border: 0; padding: 0; }
+  .ideas-outcome { padding-left: 1.8rem; }
+}
