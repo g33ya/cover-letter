@@ -1,3 +1,4 @@
+import FadeImage from "../FadeImage/FadeImage";
 import ChapterLabel from "../ChapterLabel/ChapterLabel";
 import ChapterRule from "../ChapterLabel/ChapterRule";
 import { useEffect, useRef } from "react";
@@ -136,7 +137,7 @@ export default function PeopleSection() {
             delay: reducedMotion ? 0 : 0.15,
           }}
         >
-          <img
+          <FadeImage
             src="/images/department-casual.webp"
             width={1132}
             height={867}
@@ -182,7 +183,7 @@ export default function PeopleSection() {
 
           <motion.div className="people-story-collage" {...reveal(0.15)}>
             <figure className="people-outdoor-photo">
-              <img
+              <FadeImage
                 src="/images/department-outdoor.webp"
                 width={1170}
                 height={762}
@@ -193,7 +194,7 @@ export default function PeopleSection() {
 
             <div className="people-community-media">
               <figure className="people-event-media">
-                <img src="/images/department-event.webp" width={1170} height={868}
+                <FadeImage src="/images/department-event.webp" width={1170} height={868}
                   alt="A packed department classroom with students and faculty gathered together for a community event."
                   loading="lazy" />
                 <figcaption className="people-collage-caption">Our "Meet the Professors" event turnout</figcaption>
@@ -236,7 +237,7 @@ export default function PeopleSection() {
             className="people-formal-photo"
             {...reveal(0.15)}
           >
-            <img
+            <FadeImage
               src="/images/department-formal.webp"
               width={1170}
               height={1529}

@@ -1,3 +1,4 @@
+import FadeImage from "../FadeImage/FadeImage";
 import ChapterLabel from "../ChapterLabel/ChapterLabel";
 import ChapterRule from "../ChapterLabel/ChapterRule";
 import { useEffect, useRef, useSyncExternalStore } from "react";
@@ -188,7 +189,7 @@ export default function HenHacksSection() {
         <motion.figure
           className="hh-intro-photo"
         >
-          <img
+          <FadeImage
             src="/images/henhacks-presenting.webp"
             width={4032}
             height={3024}
@@ -211,7 +212,7 @@ export default function HenHacksSection() {
         <motion.figure
           className="hh-auditorium"
         >
-          <img
+          <FadeImage
             src="/images/henhacks-auditorium.webp"
             width={4608}
             height={3456}
@@ -252,7 +253,7 @@ export default function HenHacksSection() {
             className="hh-team-photo"
             {...reveal(0.12)}
           >
-            <img
+            <FadeImage
               src="/images/henhacks-team.webp"
             width={1170}
             height={797}
@@ -308,7 +309,7 @@ export default function HenHacksSection() {
             className="hh-candid-photo"
             {...reveal(0.15)}
           >
-            <img
+            <FadeImage
               src="/images/henhacks-candid.webp"
               width={3024}
               height={4032}

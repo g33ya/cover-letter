@@ -1,6 +1,6 @@
 import ChapterLabel from "../ChapterLabel/ChapterLabel";
 import ChapterRule from "../ChapterLabel/ChapterRule";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import "./TechnicalSection.css";
 
@@ -229,6 +229,42 @@ export default function TechnicalSection() {
     window.addEventListener("resize", measure);
     document.fonts.ready.then(() => { if (accordion.isConnected) measure(); });
     return () => { observer.disconnect(); window.removeEventListener("resize", measure); };
+  }, [activeId]);
+
+  useEffect(() => {
+    if (!activeId || !window.matchMedia("(max-width: 700px)").matches) return;
+    const panel = accordionRef.current?.querySelector<HTMLElement>(".technical-panel.is-active");
+    if (!panel) return;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const startY = window.scrollY;
+    const started = performance.now();
+    const duration = reducedMotion ? 50 : 680;
+    let frame = 0;
+    // Follow the header while preceding panels collapse, so scrolling and
+    // expansion run together without aiming at an outdated panel position.
+    const scroll = (now: number) => {
+      if (!panel.isConnected) return;
+      const progress = Math.min(1, (now - started) / duration);
+      const eased = reducedMotion ? 1 : 1 - Math.pow(1 - progress, 3);
+      const target = panel.getBoundingClientRect().top + window.scrollY - 24;
+      window.scrollTo({
+        top: startY + (target - startY) * eased,
+        behavior: "instant",
+      });
+      if (progress < 1) frame = window.requestAnimationFrame(scroll);
+    };
+    frame = window.requestAnimationFrame(scroll);
+    // Let a deliberate scroll take precedence over auto-scroll.
+    const cancel = () => window.cancelAnimationFrame(frame);
+    window.addEventListener("touchstart", cancel, { passive: true });
+    window.addEventListener("wheel", cancel, { passive: true });
+    window.addEventListener("keydown", cancel);
+    return () => {
+      cancel();
+      window.removeEventListener("touchstart", cancel);
+      window.removeEventListener("wheel", cancel);
+      window.removeEventListener("keydown", cancel);
+    };
   }, [activeId]);
 
   const toggleExperience = (id: ExperienceId) => {
