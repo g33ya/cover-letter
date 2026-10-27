@@ -28,13 +28,30 @@ function Convergence() {
     <motion.div className="ideas-convergence" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.35 }}
       role="img" aria-label="Systems: understand the architecture. People: understand what teams need. Process: make improvements repeatable. Together, turning ideas into something people can rely on.">
       <div className="ideas-pathways" aria-hidden="true">
-        <svg viewBox="0 0 580 320" preserveAspectRatio="none">
+        <svg className="ideas-paths-desktop" viewBox="0 0 580 320" preserveAspectRatio="none">
           {pathways.map((item, i) => <motion.path key={item.name} d={item.path} fill="none" stroke={item.color} strokeWidth="1.5"
             variants={{ hidden: { pathLength: reduced ? 1 : 0 }, visible: { pathLength: 1 } }}
             transition={{ duration: reduced ? 0 : 1, delay: reduced ? 0 : i * 0.08, ease: [0.22, 1, 0.36, 1] }} />)}
           <motion.path d="M 510 160 H 580" stroke="#C88EA0" strokeWidth="1.5"
             variants={{ hidden: { pathLength: reduced ? 1 : 0 }, visible: { pathLength: 1 } }} transition={{ duration: reduced ? 0 : 0.25, delay: reduced ? 0 : 1.1 }} />
           <motion.circle cx="510" cy="160" r="7" fill="#C88EA0" variants={{ hidden: { opacity: reduced ? 1 : 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.2, delay: reduced ? 0 : 1.05 }} />
+        </svg>
+        <svg className="ideas-paths-mobile" viewBox="0 0 320 120" preserveAspectRatio="xMidYMid meet">
+          {pathways.map((item, i) => <motion.path key={item.name}
+            d={[
+              "M 48 0 V 20 C 48 64 160 44 160 96",
+              "M 160 0 V 96",
+              "M 272 0 V 20 C 272 64 160 44 160 96",
+            ][i]}
+            fill="none" stroke={item.color} strokeWidth="1.5"
+            variants={{ hidden: { pathLength: reduced ? 1 : 0 }, visible: { pathLength: 1 } }}
+            transition={{ duration: reduced ? 0 : 1, delay: reduced ? 0 : i * 0.08, ease: [0.22, 1, 0.36, 1] }} />)}
+          <motion.path d="M 160 96 V 120" stroke="#C88EA0" strokeWidth="1.5"
+            variants={{ hidden: { pathLength: reduced ? 1 : 0 }, visible: { pathLength: 1 } }}
+            transition={{ duration: reduced ? 0 : 0.25, delay: reduced ? 0 : 1.1 }} />
+          <motion.circle cx="160" cy="96" r="5" fill="#C88EA0"
+            variants={{ hidden: { opacity: reduced ? 1 : 0 }, visible: { opacity: 1 } }}
+            transition={{ duration: reduced ? 0 : 0.2, delay: reduced ? 0 : 1.05 }} />
         </svg>
         <div className="ideas-path-labels">
           {pathways.map((item, i) => <div className="ideas-path-label" key={item.name}>
@@ -81,10 +98,10 @@ export default function LeanTaaSSection() {
           <motion.h3 {...reveal}>I'd love to help build<br /><span>what comes next.</span></motion.h3>
           <motion.div className="ideas-copy ideas-closing-copy" {...reveal}>
             <p>{closingCopy}</p>
-            <a className="ideas-contact" href="mailto:giov.scozzaro@gmail.com">LET'S TALK <span aria-hidden="true">↗</span></a>
+            <a className="ideas-contact" href="mailto:giov.scozzaro@gmail.com">LET'S TALK <span aria-hidden="true">↗︎</span></a>
             <div className="ideas-contact-options">
               <span>giov.scozzaro@gmail.com</span>
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=giov.scozzaro%40gmail.com" target="_blank" rel="noopener noreferrer">Open in Gmail <span aria-hidden="true">↗</span></a>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=giov.scozzaro%40gmail.com" target="_blank" rel="noopener noreferrer">Open in Gmail <span aria-hidden="true">↗︎</span></a>
             </div>
           </motion.div>
         </div>

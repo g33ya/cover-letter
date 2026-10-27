@@ -454,7 +454,7 @@ export default function KineticHero() {
                 >
                   <span className="hero-action-kicker">SOMETHING FEELS OFF?</span>
                   <span className="hero-action-title">
-                    Make it make sense <span className="hero-action-arrow" aria-hidden="true">&#8599;</span>
+                    Make it make sense <span className="hero-action-arrow" aria-hidden="true">&#8599;&#65038;</span>
                   </span>
                 </button>
 
@@ -490,7 +490,7 @@ export default function KineticHero() {
                     tabIndex={transitioning ? -1 : 0}
                     onClick={event => { if (transitioning) event.preventDefault(); }}
                   >
-                    NEXT: THE WORK <span aria-hidden="true">&#8599;</span>
+                    NEXT: THE WORK <span aria-hidden="true">&#8599;&#65038;</span>
                   </a>
                 </div>
               </motion.div>

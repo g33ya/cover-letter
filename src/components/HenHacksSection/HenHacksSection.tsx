@@ -100,7 +100,8 @@ export default function HenHacksSection() {
     },
     viewport: {
       once: true,
-      amount: 0.15,
+      amount: 0.01,
+      margin: "160px 0px",
     },
     transition: {
       duration: reducedMotion ? 0 : 0.65,
@@ -188,7 +189,7 @@ export default function HenHacksSection() {
           className="hh-intro-photo"
         >
           <img
-            src="/images/henhacks-presenting.jpg"
+            src="/images/henhacks-presenting.webp"
             width={4032}
             height={3024}
             alt="Gia speaking into a microphone during a HenHacks event."
@@ -211,7 +212,7 @@ export default function HenHacksSection() {
           className="hh-auditorium"
         >
           <img
-            src="/images/henhacks-auditorium.jpg"
+            src="/images/henhacks-auditorium.webp"
             width={4608}
             height={3456}
             alt="A packed university auditorium filled with HenHacks participants."
@@ -252,7 +253,7 @@ export default function HenHacksSection() {
             {...reveal(0.12)}
           >
             <img
-              src="/images/henhacks-team.png"
+              src="/images/henhacks-team.webp"
             width={1170}
             height={797}
               alt="Gia and fellow HenHacks organizers wearing matching pink event shirts."
@@ -308,7 +309,7 @@ export default function HenHacksSection() {
             {...reveal(0.15)}
           >
             <img
-              src="/images/henhacks-candid.jpeg"
+              src="/images/henhacks-candid.webp"
               width={3024}
               height={4032}
               alt="Gia and a fellow HenHacks organizer wearing playful crowns during the event."
@@ -325,7 +326,7 @@ export default function HenHacksSection() {
           <span>UP NEXT</span>
           <a href="#leantaas">
             WHY LEANTAAS / GTM ENGINEERING
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">↗︎</span>
           </a>
         </div>
       </div>

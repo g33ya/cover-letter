@@ -30,8 +30,8 @@ const experiences: Experience[] = [
     number: "01",
     name: "Apple",
     category: "SOFTWARE ENGINEERING",
-    image: "/images/apple-rainbow.png",
-    teamImage: "/images/apple-team.png",
+    image: "/images/apple-rainbow.webp",
+    teamImage: "/images/apple-team.webp",
     photoCaption: "My lovely (extended) team after our last dinner together!",
     accent: "#C88EA0",
     imagePosition: "center 53%",
@@ -54,8 +54,8 @@ const experiences: Experience[] = [
     number: "02",
     name: "M&T Bank",
     category: "DEVOPS & INFRASTRUCTURE",
-    image: "/images/mt-migration.png",
-    teamImage: "/images/mt-team.png",
+    image: "/images/mt-migration.webp",
+    teamImage: "/images/mt-team.webp",
     photoCaption: "My partner in crime and one of our mentors.",
     accent: "#778D70",
     imagePosition: "center 37%",
@@ -77,8 +77,8 @@ const experiences: Experience[] = [
     number: "03",
     name: "DAPPEr",
     category: "SATELLITE RESEARCH",
-    image: "/images/cubesat-board.png",
-    teamImage: "/images/cubesat-team.png",
+    image: "/images/cubesat-board.webp",
+    teamImage: "/images/cubesat-team.webp",
     photoCaption: "My partner and I passing the torch to the new team!",
     accent: "#B68C78",
     imagePosition: "center",
@@ -273,7 +273,7 @@ export default function TechnicalSection() {
 
         <div className="technical-accordion-heading">
           <ChapterLabel number="01.1" title="EXPERIENCES" />
-          <span>CLICK TO EXPLORE ↘</span>
+          <span>CLICK TO EXPLORE ↘︎</span>
         </div>
 
         {/* HORIZONTAL ACCORDION */}
@@ -391,7 +391,7 @@ export default function TechnicalSection() {
 
                 <div className="technical-vertical-label" aria-hidden="true">
                   <span>{experience.name}</span>
-                  <span>↗</span>
+                  <span>↗︎</span>
                 </div>
               </article>
             );
@@ -412,7 +412,7 @@ export default function TechnicalSection() {
           </p>
 
           <a href="#people" className="technical-next-link">
-            NEXT CHAPTER: THE PEOPLE <span>↗</span>
+            NEXT CHAPTER: THE PEOPLE <span>↗︎</span>
           </a>
         </div>
       </div>

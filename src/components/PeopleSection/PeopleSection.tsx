@@ -65,7 +65,8 @@ export default function PeopleSection() {
     },
     viewport: {
       once: true,
-      amount: 0.15,
+      amount: 0.01,
+      margin: "160px 0px",
     },
     transition: {
       ...revealTransition,
@@ -128,7 +129,7 @@ export default function PeopleSection() {
             opacity: 1,
             y: 0,
           }}
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.01, margin: "160px 0px" }}
           transition={{
             ...revealTransition,
             duration: reducedMotion ? 0 : 0.75,
@@ -136,7 +137,7 @@ export default function PeopleSection() {
           }}
         >
           <img
-            src="/images/department-casual.png"
+            src="/images/department-casual.webp"
             width={1132}
             height={867}
             alt="Gia and fellow University of Delaware students gathered on the steps outside a campus house."
@@ -182,7 +183,7 @@ export default function PeopleSection() {
           <motion.div className="people-story-collage" {...reveal(0.15)}>
             <figure className="people-outdoor-photo">
               <img
-                src="/images/department-outdoor.png"
+                src="/images/department-outdoor.webp"
                 width={1170}
                 height={762}
                 alt="Gia and a large group of Computer Science department students gathered outdoors."
@@ -192,7 +193,7 @@ export default function PeopleSection() {
 
             <div className="people-community-media">
               <figure className="people-event-media">
-                <img src="/images/department-event.png" width={1170} height={868}
+                <img src="/images/department-event.webp" width={1170} height={868}
                   alt="A packed department classroom with students and faculty gathered together for a community event."
                   loading="lazy" />
                 <figcaption className="people-collage-caption">Our "Meet the Professors" event turnout</figcaption>
@@ -236,7 +237,7 @@ export default function PeopleSection() {
             {...reveal(0.15)}
           >
             <img
-              src="/images/department-formal.png"
+              src="/images/department-formal.webp"
               width={1170}
               height={1529}
               alt="Gia and fellow students at a University of Delaware Computer and Information Sciences event."
@@ -249,7 +250,7 @@ export default function PeopleSection() {
           <span>UP NEXT</span>
           <a href="#henhacks">
             HENHACKS
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">↗︎</span>
           </a>
         </div>
       </div>
