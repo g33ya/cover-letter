@@ -11,15 +11,15 @@ const connectionCopy = [
 ];
 const contributionCopy = [
   "What excites me most about GTM Engineering at LeanTaaS is how much variety there seems to be in the problems you're solving. From our conversations, I got the impression that there's no shortage of ideas or initiative. There are already tools being built, processes being improved, and opportunities to connect things that don't quite work together yet.",
-  "There's something so satisfying about taking an idea that's already useful and figuring out how to make it even better. Whether that means understanding an unfamiliar codebase, improving an integration, or turning an early prototype into something more reliable, those are exactly the kinds of challenges I enjoy working through.",
-  "I'm also excited to learn how experienced professionals approach business processes and where my engineering skills could help make their work easier.",
-  "LeanTaaS feels like an opportunity to bring together the parts of my experiences I've enjoyed most: engineering, collaboration, and improving the systems that connect everything. And knowing that this work supports something much bigger than any one team or community—helping more people access the care they need—makes that opportunity even more meaningful to me.",
+  "I was even more drawn to LeanTaaS's emphasis on scrappy, repeatable execution. I've learned firsthand how satisfying it is to take something that works and make it more reliable, organized, and sustainable. Whether that's improving an integration, building on an early prototype, or documenting a process so someone else can pick it up, I love finding ways to turn good ideas into lasting solutions.",
+  "Your emphasis on being One Team and continuously learning resonates with me, too. Some of my favorite experiences have come from working alongside people with different perspectives, learning how they approach problems, and figuring out how I can make their work easier.",
+  "But what makes LeanTaaS especially meaningful to me is the mission behind it all. I've seen how much of a difference better systems can make within a community. The opportunity to apply that same mindset to something much bigger, helping healthcare organizations work more effectively and making care more accessible, is something I would love to be part of.",
 ];
 const closingCopy = "I still have so much to learn. I'd love the opportunity to work alongside people who challenge me, contribute my own ideas, and keep growing as both an engineer and a teammate. Thank you for taking the time to get to know me!";
 const pathways = [
-  { name: "SYSTEMS", detail: "Understand the architecture", color: "#778D70", path: "M 0 34 H 330 C 440 34 420 160 510 160" },
-  { name: "PEOPLE", detail: "Understand what teams need", color: "#C88EA0", path: "M 0 160 H 510" },
-  { name: "PROCESS", detail: "Make improvements repeatable", color: "#778D70", path: "M 0 286 H 330 C 440 286 420 160 510 160" },
+  { name: "SYSTEMS", detail: "Understand the architecture", color: "#1769A5", path: "M 0 34 H 330 C 440 34 420 160 510 160" },
+  { name: "PEOPLE", detail: "Understand what teams need", color: "#12466F", path: "M 0 160 H 510" },
+  { name: "PROCESS", detail: "Make improvements repeatable", color: "#4EA89C", path: "M 0 286 H 330 C 440 286 420 160 510 160" },
 ];
 
 function Convergence() {
@@ -32,9 +32,9 @@ function Convergence() {
           {pathways.map((item, i) => <motion.path key={item.name} d={item.path} fill="none" stroke={item.color} strokeWidth="1.5"
             variants={{ hidden: { pathLength: reduced ? 1 : 0 }, visible: { pathLength: 1 } }}
             transition={{ duration: reduced ? 0 : 1, delay: reduced ? 0 : i * 0.08, ease: [0.22, 1, 0.36, 1] }} />)}
-          <motion.path d="M 510 160 H 580" stroke="#C88EA0" strokeWidth="1.5"
+          <motion.path d="M 510 160 H 580" stroke="#4EA89C" strokeWidth="1.5"
             variants={{ hidden: { pathLength: reduced ? 1 : 0 }, visible: { pathLength: 1 } }} transition={{ duration: reduced ? 0 : 0.25, delay: reduced ? 0 : 1.1 }} />
-          <motion.circle cx="510" cy="160" r="7" fill="#C88EA0" variants={{ hidden: { opacity: reduced ? 1 : 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.2, delay: reduced ? 0 : 1.05 }} />
+          <motion.circle cx="510" cy="160" r="7" fill="#4EA89C" stroke="#12466F" strokeWidth="1.5" variants={{ hidden: { opacity: reduced ? 1 : 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.2, delay: reduced ? 0 : 1.05 }} />
         </svg>
         <svg className="ideas-paths-mobile" viewBox="0 0 320 120" preserveAspectRatio="xMidYMid meet">
           {pathways.map((item, i) => <motion.path key={item.name}
@@ -46,10 +46,10 @@ function Convergence() {
             fill="none" stroke={item.color} strokeWidth="1.5"
             variants={{ hidden: { pathLength: reduced ? 1 : 0 }, visible: { pathLength: 1 } }}
             transition={{ duration: reduced ? 0 : 1, delay: reduced ? 0 : i * 0.08, ease: [0.22, 1, 0.36, 1] }} />)}
-          <motion.path d="M 160 96 V 120" stroke="#C88EA0" strokeWidth="1.5"
+          <motion.path d="M 160 96 V 120" stroke="#4EA89C" strokeWidth="1.5"
             variants={{ hidden: { pathLength: reduced ? 1 : 0 }, visible: { pathLength: 1 } }}
             transition={{ duration: reduced ? 0 : 0.25, delay: reduced ? 0 : 1.1 }} />
-          <motion.circle cx="160" cy="96" r="5" fill="#C88EA0"
+          <motion.circle cx="160" cy="96" r="5" fill="#4EA89C" stroke="#12466F" strokeWidth="1.5"
             variants={{ hidden: { opacity: reduced ? 1 : 0 }, visible: { opacity: 1 } }}
             transition={{ duration: reduced ? 0 : 0.2, delay: reduced ? 0 : 1.05 }} />
         </svg>
