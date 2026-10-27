@@ -28,10 +28,10 @@ function Convergence() {
       role="img" aria-label="Systems: understand the architecture. People: understand what teams need. Process: make improvements repeatable. Together, turning ideas into something people can rely on.">
       <div className="ideas-pathways" aria-hidden="true">
         <svg viewBox="0 0 580 320" preserveAspectRatio="none">
-          {pathways.map((item, i) => <motion.path key={item.name} d={item.path} fill="none" stroke={item.color} strokeWidth="1.5" vectorEffect="non-scaling-stroke"
+          {pathways.map((item, i) => <motion.path key={item.name} d={item.path} fill="none" stroke={item.color} strokeWidth="1.5"
             variants={{ hidden: { pathLength: reduced ? 1 : 0 }, visible: { pathLength: 1 } }}
             transition={{ duration: reduced ? 0 : 1, delay: reduced ? 0 : i * 0.08, ease: [0.22, 1, 0.36, 1] }} />)}
-          <motion.path d="M 510 160 H 580" stroke="#C88EA0" strokeWidth="1.5" vectorEffect="non-scaling-stroke"
+          <motion.path d="M 510 160 H 580" stroke="#C88EA0" strokeWidth="1.5"
             variants={{ hidden: { pathLength: reduced ? 1 : 0 }, visible: { pathLength: 1 } }} transition={{ duration: reduced ? 0 : 0.25, delay: reduced ? 0 : 1.1 }} />
           <motion.circle cx="510" cy="160" r="7" fill="#C88EA0" variants={{ hidden: { opacity: reduced ? 1 : 0 }, visible: { opacity: 1 } }} transition={{ duration: 0.2, delay: reduced ? 0 : 1.05 }} />
         </svg>
