@@ -1,3 +1,4 @@
+import ChapterLabel from "../ChapterLabel/ChapterLabel";
 import { useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import "./TechnicalSection.css";
@@ -13,11 +14,13 @@ type Experience = {
   category: string;
   image: string;
   teamImage: string;
+  photoCaption: string;
   accent: string;
   imagePosition?: string;
   mainRegion: SafeRegion;
   teamRegion: SafeRegion;
   details: string[];
+  paragraphs: string[];
 };
 
 const experiences: Experience[] = [
@@ -28,10 +31,17 @@ const experiences: Experience[] = [
     category: "SOFTWARE ENGINEERING",
     image: "/images/apple-rainbow.png",
     teamImage: "/images/apple-team.png",
+    photoCaption: "My lovely (extended) team after our last dinner together!",
     accent: "#C88EA0",
     imagePosition: "center 53%",
     mainRegion: [0.58, 0.47, 0.77, 0.61],
     teamRegion: [0.10, 0.07, 0.87, 0.74],
+    paragraphs: [
+          "At Apple, I was drawn to the challenge of identifying an ambiguous problem: where could AI make the biggest impact on an internal testing visualization platform?",
+          "I interviewed team managers to understand their workflows and figure out where a new feature could fit. That led me to develop AI Insights, a test suite summarizer that highlighted improvements, concerns, and regressions compared to previous weeks in just seconds.",
+          "I owned the feature's end-to-end development, from designing the data model and APIs to prompt engineering and building the React interface. I introduced a human-in-the-loop approval process and refined how the feature fit into the platform's architecture.",
+          "This was my first opportunity to conduct real stakeholder interviews! I discovered how much I enjoy working with people and building technology that works for them. Getting to see the impact of my work and knowing its development continued after I left made the experience even more valuable."
+    ],
     details: [
       "Full-stack development",
       "AI integration",
@@ -45,10 +55,16 @@ const experiences: Experience[] = [
     category: "DEVOPS & INFRASTRUCTURE",
     image: "/images/mt-migration.png",
     teamImage: "/images/mt-team.png",
+    photoCaption: "My partner in crime and one of our mentors.",
     accent: "#778D70",
     imagePosition: "center 37%",
     mainRegion: [0.08, 0.03, 0.94, 0.37],
     teamRegion: [0, 0.03, 0.79, 0.60],
+    paragraphs: [
+          "At M&T, I was drawn to the challenge of working with systems I had never encountered before. My task was to migrate an application's CI/CD pipelines from Azure DevOps to GitLab, which meant studying unfamiliar scripts, translating them into YAML, and spending many, many pipeline runs reading through logs.",
+          "Before this internship, I had never really worked under the hood. But with each running pipeline, I grew more confident and independent. I ended up migrating two applications instead of one, which earned me the opportunity to tackle a security vulnerability with no known solution from the team.",
+          "I left knowing that researching implementation approaches and understanding the systems you're working with is often half the battle. Even when I don't know where to start, I can figure it out!"
+    ],
     details: [
       "Azure DevOps → GitLab",
       "CI/CD migration",
@@ -58,14 +74,20 @@ const experiences: Experience[] = [
   {
     id: "cubesat",
     number: "03",
-    name: "CubeSat",
+    name: "DAPPEr",
     category: "SATELLITE RESEARCH",
     image: "/images/cubesat-board.png",
     teamImage: "/images/cubesat-team.png",
+    photoCaption: "My partner and I passing the torch to the new team!",
     accent: "#B68C78",
     imagePosition: "center",
     mainRegion: [0.2, 0.2, 0.8, 0.7],
     teamRegion: [0, 0.01, 0.76, 0.82],
+    paragraphs: [
+          "Working on the DAPPEr (Delaware Atmospheric Plasma Probe Experiment) team introduced me to an entirely different side of computer science. I was surrounded by unfamiliar hardware, technical documentation, and systems I had never encountered before.",
+          "A lot my work involved researching, creating flight packet structures, and mapping communication diagrams. I spent a good chunk of my time reading and understanding how everything fit together. One of our biggest accomplishments was connecting an Arduino board to the satellite's Attitude Determination and Control System (ADCS) and successfully confirming communication between them.",
+          "This experience taught me that problem-solving doesn't always mean jumping straight into implementation. Sometimes, the most important step is taking the time to understand the system first."
+    ],
     details: [
       "Technical documentation",
       "Arduino",
@@ -145,7 +167,7 @@ function ExperiencePhotos({ experience }: { experience: Experience }) {
       </div>
       <figcaption className="technical-photo-caption" onClick={event => event.stopPropagation()}>
         <span>THE PEOPLE BEHIND THE WORK</span>
-        <p>[Your photo caption]</p>
+        <p>{experience.photoCaption}</p>
       </figcaption>
     </figure>
   );
@@ -153,6 +175,60 @@ function ExperiencePhotos({ experience }: { experience: Experience }) {
 
 export default function TechnicalSection() {
   const [activeId, setActiveId] = useState<ExperienceId | null>(null);
+  const accordionRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const accordion = accordionRef.current;
+    if (!accordion || !activeId) return;
+    const panel = accordion.querySelector<HTMLElement>(".technical-panel.is-active");
+    const content = panel?.querySelector<HTMLElement>(".technical-panel-content");
+    const heading = content?.querySelector<HTMLElement>(".technical-expanded-heading");
+    const writing = content?.querySelector<HTMLElement>(".technical-expanded-writing");
+    const layout = content?.querySelector<HTMLElement>(".technical-expanded-layout");
+    const photos = content?.querySelector<HTMLElement>(".technical-expanded-visuals");
+    if (!panel || !content || !heading || !writing || !layout || !photos) return;
+    const measure = () => {
+      if (!panel.classList.contains("is-active")) return;
+      const mobile = window.matchMedia("(max-width: 700px)").matches;
+      const panelStyle = getComputedStyle(panel);
+      const contentStyle = getComputedStyle(content);
+      const layoutStyle = getComputedStyle(layout);
+      const gap = parseFloat(getComputedStyle(accordion).columnGap) || 0;
+      const grow = parseFloat(getComputedStyle(accordion).getPropertyValue("--technical-active-grow"));
+      // Measure at the destination width, not the narrow intermediate animation width.
+      const panelWidth = mobile ? accordion.clientWidth : (accordion.clientWidth - gap * 2) * grow / (grow + 2);
+      const contentWidth = panelWidth - parseFloat(contentStyle.paddingLeft) - parseFloat(contentStyle.paddingRight);
+      const writingWidth = mobile ? contentWidth : (contentWidth - parseFloat(layoutStyle.columnGap)) / 1.95;
+      const naturalHeight = (element: HTMLElement, width: number) => {
+        const clone = element.cloneNode(true) as HTMLElement;
+        clone.setAttribute("aria-hidden", "true");
+        clone.inert = true;
+        Object.assign(clone.style, { position: "absolute", visibility: "hidden", pointerEvents: "none", width: `${width}px`, height: "auto", top: "0", left: "0", transition: "none", transform: "none" });
+        content.append(clone);
+        const height = clone.getBoundingClientRect().height;
+        clone.remove();
+        return height;
+      };
+      const headingHeight = naturalHeight(heading, contentWidth) + parseFloat(getComputedStyle(heading).marginBottom);
+      const writingHeight = naturalHeight(writing, writingWidth);
+      const photoHeight = photos.getBoundingClientRect().height;
+      const layoutHeight = mobile ? photoHeight + parseFloat(layoutStyle.rowGap) + writingHeight : Math.max(photoHeight, writingHeight);
+      const height = Math.ceil(parseFloat(contentStyle.top) + headingHeight + layoutHeight + parseFloat(contentStyle.paddingBottom) + parseFloat(panelStyle.borderTopWidth) + 2);
+      accordion.style.setProperty("--technical-expanded-height", `${height}px`);
+    };
+    measure();
+    let previousWidth = accordion.clientWidth;
+    const observer = new ResizeObserver(() => {
+      if (accordion.clientWidth !== previousWidth) {
+        previousWidth = accordion.clientWidth;
+        measure();
+      }
+    });
+    observer.observe(accordion);
+    window.addEventListener("resize", measure);
+    document.fonts.ready.then(() => { if (accordion.isConnected) measure(); });
+    return () => { observer.disconnect(); window.removeEventListener("resize", measure); };
+  }, [activeId]);
 
   const toggleExperience = (id: ExperienceId) => {
     setActiveId((current) => (current === id ? null : id));
@@ -166,14 +242,14 @@ export default function TechnicalSection() {
 
         <div className="technical-intro">
           <div className="technical-section-label">
-            <span className="technical-label-line" />
-            CHAPTER 01 / THE WORK
+            <ChapterLabel number="01" title="SYSTEMS" />
+            <span className="technical-label-line" aria-hidden="true" />
           </div>
 
           <h2 id="technical-title" className="technical-headline">
-            I like figuring
+            I like the
             <br />
-            <span>things out.</span>
+            <span>detective work.</span>
           </h2>
 
           <div className="technical-intro-bottom">
@@ -184,11 +260,9 @@ export default function TechnicalSection() {
             </p>
 
             <div className="technical-intro-copy">
-              <span>YOUR WORDS GO HERE</span>
+              <span>EVERY SYSTEM HAS A STORY</span>
               <p>
-                [Write about your curiosity, your love of learning,
-                and how technical challenges make you feel like
-                a detective.]
+                The satisfaction of turning hieroglyphics into plain English is what drew me to computer science in the first place.
               </p>
             </div>
           </div>
@@ -197,13 +271,14 @@ export default function TechnicalSection() {
         {/* ACCORDION INTRO */}
 
         <div className="technical-accordion-heading">
-          <span>THREE EXPERIENCES, THREE DIFFERENT CHALLENGES</span>
+          <ChapterLabel number="01.1" title="EXPERIENCES" />
           <span>CLICK TO EXPLORE ↘</span>
         </div>
 
         {/* HORIZONTAL ACCORDION */}
 
         <div
+          ref={accordionRef}
           className={`technical-accordion ${
             activeId ? "has-active" : ""
           }`}
@@ -294,17 +369,9 @@ export default function TechnicalSection() {
                         MY EXPERIENCE
                       </span>
 
-                      <p>
-                        [Paragraph 1: What drew you into this
-                        challenge? What were you trying to understand
-                        or accomplish?]
-                      </p>
-
-                      <p>
-                        [Paragraph 2: What did you work on, what
-                        did you learn, and why did the experience
-                        matter to you?]
-                      </p>
+                      {experience.paragraphs.map((paragraph, index) => (
+                        <p key={index}>{paragraph}</p>
+                      ))}
 
                       <div className="technical-expanded-details">
                         <span>WHAT I WORKED WITH</span>
@@ -334,14 +401,13 @@ export default function TechnicalSection() {
 
         <div className="technical-transition">
           <span className="technical-transition-label">
-            BUT THE WORK IS ONLY PART OF IT
+            <ChapterLabel number="01.2" title="BUT THE WORK IS ONLY PART OF IT" />
           </span>
 
           <p>
-            The more I learned about building things,
+            For me, the people have always been
             <br />
-            the more I appreciated{" "}
-            <span>who I was building them with.</span>
+            <span>just as important as the work.</span>
           </p>
 
           <a href="#people" className="technical-next-link">

@@ -452,7 +452,7 @@
 /* TRANSITION */
 
 .technical-transition {
-  padding: 170px 0 160px;
+  padding: 170px 0 80px;
   text-align: center;
 }
 
@@ -654,7 +654,7 @@
   }
 
   .technical-transition {
-    padding: 120px 0 110px;
+    padding: 120px 0 60px;
   }
 
   .technical-transition > p {
