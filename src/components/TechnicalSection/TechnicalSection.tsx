@@ -63,7 +63,7 @@ const experiences: Experience[] = [
     teamRegion: [0, 0.03, 0.79, 0.60],
     paragraphs: [
           "At M&T, I was drawn to the challenge of working with systems I had never encountered before. My task was to migrate an application's CI/CD pipelines from Azure DevOps to GitLab, which meant studying unfamiliar scripts, translating them into YAML, and spending many, many pipeline runs reading through logs.",
-          "Before this internship, I had never really worked under the hood. But with each running pipeline, I grew more confident and independent. I ended up migrating two applications instead of one, which earned me the opportunity to tackle a security vulnerability the team didn’t yet know how to resolve.",
+          "Before this internship, I had never really worked under the hood. But with each successful pipeline run, I grew more confident and independent. I ended up migrating two applications instead of one, which earned me the opportunity to tackle a security vulnerability the team didn’t yet know how to resolve.",
           "I left knowing that researching implementation approaches and understanding the systems you're working with are often half the battle. Even when I don't know where to start, I can figure it out!"
     ],
     details: [

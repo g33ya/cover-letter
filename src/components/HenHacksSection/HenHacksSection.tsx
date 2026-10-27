@@ -291,11 +291,11 @@ export default function HenHacksSection() {
             </p>
 
             <p>
-              Each committee had its own weekly responsibilities, assignees, and priorities. Everything was tracked in separate Google Docs maintained by committee heads, each organized a little differently. You can imagine how difficult it became to track who was doing what, how things were progressing, and where the results of each task ended up!
+              Each committee tracked its work differently in separate Google Docs, making it difficult to see ownership, progress, and results across teams.
             </p>
 
             <p>
-              I introduced Freedcamp, a shared task-management system, and standardized how we documented, assigned, and tracked work. I also established a clear event timeline and had each committee create an organizer guide to pass down their knowledge to future teams. When I stepped into the role, I had to figure a lot of things out on my own, and I wanted to make sure future organizers had a better starting point.
+              I introduced Freedcamp, a shared task-management system, and standardized how we documented, assigned, and tracked work. I also had each committee create an organizer guide to pass its knowledge on to future teams. When I stepped into the role, I had to figure a lot of things out on my own, and I wanted to make sure future organizers had a better starting point.
             </p>
 
             <p className="hh-process-emphasis">

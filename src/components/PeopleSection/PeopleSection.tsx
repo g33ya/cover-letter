@@ -166,7 +166,7 @@ export default function PeopleSection() {
 
             <div className="people-story-copy">
               <p>
-                Before I even set foot on the University of Delaware campus, I emailed the professor running the CIS department's community-building organization. I knew I had to get involved! I convinced them to give me a chance, freshman that I was. My driving force has always been to help others.
+                Before I even set foot on the University of Delaware campus, I emailed the professor running the CIS department's community-building organization. I knew I had to get involved! I convinced them to give me a chance, freshman that I was. 
               </p>
 
               <p>

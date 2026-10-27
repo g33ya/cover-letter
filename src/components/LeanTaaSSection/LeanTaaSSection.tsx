@@ -7,15 +7,15 @@ import "./LeanTaaSSection.css";
 const connectionCopy = [
   "The work I enjoy most has a common thread: I love getting under the hood of unfamiliar systems, figuring out how everything fits together, and finding ways to make things work better.",
   "But I've also learned that understanding the technology is only half the picture. It's just as important to understand the people using it, the challenges they face, and how they work together.",
-  "I'm excited about how closely I’d work with the people using the tools we build. I love learning how other teams operate, understanding what's important to them, and finding ways to make their work easier.",
+  "I'm excited about how closely I’d work with the people using the tools we build. I love learning how other teams operate and understanding what's important to them.",
 ];
 const contributionCopy = [
   "What excites me most about GTM Engineering at LeanTaaS is how much variety there seems to be in the problems you're solving. From our conversations, I got the impression that there's no shortage of ideas or initiative. There are already tools being built, processes being improved, and opportunities to connect things that don't quite work together yet.",
   "There's something so satisfying about taking an idea that's already useful and figuring out how to make it even better. Whether that means understanding an unfamiliar codebase, improving an integration, or turning an early prototype into something more reliable, those are exactly the kinds of challenges I enjoy working through.",
-  "I'm also excited about the opportunity to learn how different teams and business processes operate. I've always enjoyed understanding how things work, and I find it so rewarding to uncover where something could be improved and figure out how to make someone's job a little easier.",
+  "I'm also excited to learn how experienced professionals approach business processes and where my engineering skills could help make their work easier.",
   "LeanTaaS feels like an opportunity to bring together the parts of my experiences I've enjoyed most: engineering, collaboration, and improving the systems that connect everything. And knowing that this work supports something much bigger than any one team or community—helping more people access the care they need—makes that opportunity even more meaningful to me.",
 ];
-const closingCopy = "I still have so much to learn. Honestly, that's what excites me the most! I'd love the opportunity to work alongside people who challenge me, contribute my own ideas, and keep growing as both an engineer and a teammate. Thank you for taking the time to get to know me!";
+const closingCopy = "I still have so much to learn. I'd love the opportunity to work alongside people who challenge me, contribute my own ideas, and keep growing as both an engineer and a teammate. Thank you for taking the time to get to know me!";
 const pathways = [
   { name: "SYSTEMS", detail: "Understand the architecture", color: "#778D70", path: "M 0 34 H 330 C 440 34 420 160 510 160" },
   { name: "PEOPLE", detail: "Understand what teams need", color: "#C88EA0", path: "M 0 160 H 510" },
