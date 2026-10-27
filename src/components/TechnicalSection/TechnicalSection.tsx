@@ -1,6 +1,7 @@
 import ChapterLabel from "../ChapterLabel/ChapterLabel";
 import ChapterRule from "../ChapterLabel/ChapterRule";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import type { CSSProperties } from "react";
 import "./TechnicalSection.css";
 
@@ -175,6 +176,7 @@ function ExperiencePhotos({ experience }: { experience: Experience }) {
 }
 
 export default function TechnicalSection() {
+  const reducedMotion = useReducedMotion();
   const [activeId, setActiveId] = useState<ExperienceId | null>(null);
   const accordionRef = useRef<HTMLDivElement>(null);
 
@@ -283,11 +285,18 @@ export default function TechnicalSection() {
             <ChapterRule className="technical-label-line" />
           </div>
 
-          <h2 id="technical-title" className="technical-headline">
+          <motion.h2
+            id="technical-title"
+            className="technical-headline"
+            initial={{ opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.01, margin: "160px 0px" }}
+            transition={{ duration: reducedMotion ? 0 : 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
             I like the
             <br />
             <span>detective work.</span>
-          </h2>
+          </motion.h2>
 
           <div className="technical-intro-bottom">
             <p className="technical-intro-statement">
